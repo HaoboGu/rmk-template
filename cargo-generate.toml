@@ -1,0 +1,5 @@
+[placeholders.hypervisor]
+type = "string"
+prompt = "What hypervisor to use?"
+choices = ["uhyve", "qemu"]
+default = "qemu"
