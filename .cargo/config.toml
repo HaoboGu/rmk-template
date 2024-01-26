@@ -1,6 +1,11 @@
 [target.'cfg(all(target_arch = "arm", target_os = "none"))']
 # TODO: use probe-rs chip list to get your chip name for probe-rs 
-runner = "probe-rs run --chip "
+{% if microcontroller_family == "rp" %}
+runner = "probe-rs run --chip rp2040"
+{% endif %}
+{% if microcontroller_family == "stm32" %}
+runner = "probe-rs run --chip {{ chip }}"
+{% endif %}
 
 rustflags = [
   # Previously, the linker arguments --nmagic and -Tlink.x were set here.

@@ -1,3 +1,6 @@
+[hooks]
+post = ["post-script.rhai"]
+
 [placeholders.microcontroller_family]
 type = "string"
 prompt = "Choose your microcontroller family"
@@ -16,8 +19,13 @@ choices = [
     "thumbv8m.main-none-eabihf",
     "riscv32imac-unknown-none-elf",
 ]
-default = "stm32"
+default = "thumbv7em-none-eabihf"
+
+[conditional.'microcontroller_family == "stm32"']
+ignore = ['src/main_rp.rs', 'src/main_nrf.rs']
+[conditional.'microcontroller_family == "rp"']
+ignore = ['src/main_stm32.rs', 'src/main_nrf.rs']
 
 [conditional.'microcontroller_family == "stm32" || microcontroller_family == "nrf"'.placeholders.chip]
 type = "string"
-prompt = "Embassy feature name of your microcontroller"
+prompt = "Enter your MCU model(Embassy feature name)"

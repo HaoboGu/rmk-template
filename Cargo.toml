@@ -10,10 +10,10 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { version = "0.1.2", features = ["eeprom", "col2row"] }
-cortex-m = { version = "0.7.7", features = ['critical-section-single-core'] }
+rmk = { version = "0.1.3"}
 cortex-m-rt = "0.7.3"
 {% if microcontroller_family == "stm32" %}
+cortex-m = { version = "0.7.7", features = ['critical-section-single-core'] }
 embassy-stm32 = { version = "0.1.0", features = [
     "{{ chip }}",
     "defmt",
@@ -54,6 +54,10 @@ defmt = "0.3.5"
 defmt-rtt = "0.4.0"
 panic-probe = { version = "0.3", features = ["print-defmt"] }
 
+[build-dependencies]
+xz2 = "0.1.7"
+json = "0.12"
+const-gen = "1.6"
 
 [profile.dev]
 codegen-units = 1      # better optimizations
