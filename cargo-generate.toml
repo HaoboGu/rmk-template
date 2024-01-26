@@ -1,5 +1,23 @@
-[placeholders.hypervisor]
+[placeholders.microcontroller_family]
 type = "string"
-prompt = "What hypervisor to use?"
-choices = ["uhyve", "qemu"]
-default = "qemu"
+prompt = "Choose your microcontroller family"
+# TODO: add nrf
+choices = ["stm32", "rp"]
+default = "stm32"
+
+[placeholders.target]
+type = "string"
+prompt = "Choose your microcontroller's target"
+choices = [
+    "thumbv6m-none-eabi",
+    "thumbv7em-none-eabi",
+    "thumbv7em-none-eabihf",
+    "thumbv7m-none-eabi",
+    "thumbv8m.main-none-eabihf",
+    "riscv32imac-unknown-none-elf",
+]
+default = "stm32"
+
+[conditional.'microcontroller_family == "stm32" || microcontroller_family == "nrf"'.placeholders.chip]
+type = "string"
+prompt = "Embassy feature name of your microcontroller"

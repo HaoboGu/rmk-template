@@ -1,9 +1,6 @@
 [target.'cfg(all(target_arch = "arm", target_os = "none"))']
-# uncomment ONE of these three option to make `cargo run` start a GDB session
-# which option to pick depends on your system
-runner = "probe-rs run --chip STM32F411CEUx"
-# runner = "gdb-multiarch -q -x openocd.gdb"
-# runner = "gdb -q -x openocd.gdb"
+# TODO: use probe-rs chip list to get your chip name for probe-rs 
+runner = "probe-rs run --chip "
 
 rustflags = [
   # Previously, the linker arguments --nmagic and -Tlink.x were set here.
@@ -24,12 +21,11 @@ rustflags = [
 
 [build]
 # Pick ONE of these default compilation targets
+target = "{{ target }}"
 # target = "thumbv6m-none-eabi"        # Cortex-M0 and Cortex-M0+
 # target = "thumbv7m-none-eabi"        # Cortex-M3
 # target = "thumbv7em-none-eabi"       # Cortex-M4 and Cortex-M7 (no FPU)
-target = "thumbv7em-none-eabihf"     # Cortex-M4F and Cortex-M7F (with FPU)
-# target = "thumbv8m.base-none-eabi"   # Cortex-M23
-# target = "thumbv8m.main-none-eabi"   # Cortex-M33 (no FPU)
+# target = "thumbv7em-none-eabihf"     # Cortex-M4F and Cortex-M7F (with FPU)
 # target = "thumbv8m.main-none-eabihf" # Cortex-M33 (with FPU)
 
 [env]
