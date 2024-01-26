@@ -21,8 +21,7 @@ embassy-stm32 = { version = "0.1.0", features = [
     "time",
 ] }
 embassy-time = { version = "0.3", features = ["tick-hz-32_768", "defmt"] }
-{% endif %}
-{% if microcontroller_family == "nrf" %}
+{% elsif microcontroller_family == "nrf" %}
 embassy-nrf = { version = "0.1.0", features = [
     "{{ chip }}",
     "defmt",
@@ -31,8 +30,7 @@ embassy-nrf = { version = "0.1.0", features = [
     "time",
 ] }
 embassy-time = { version = "0.3", features = ["tick-hz-32_768", "defmt"] }
-{% endif %}
-{% if microcontroller_family == "rp" %}
+{% elsif microcontroller_family == "rp" %}
 embassy-rp = { version = "0.1", features = [
     "defmt",
     "time-driver",

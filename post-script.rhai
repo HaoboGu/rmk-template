@@ -5,4 +5,6 @@ else if variable::get("microcontroller_family") == "rp" {
     file::rename("src/main_rp.rs", "src/main.rs");
 }
 
-print("❗️ For the following steps, search 'TODO' in generated project");
+file::rename("README_gen.md", "README.md");
+
+print("️️👉👉👉 For the following steps, search 'TODO' in generated project");

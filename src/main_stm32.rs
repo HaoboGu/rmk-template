@@ -24,7 +24,8 @@ use rmk::{initialize_keyboard_and_run, keymap::KeyMap};
 use static_cell::StaticCell;
 use vial::{VIAL_KEYBOARD_DEF, VIAL_KEYBOARD_ID};
 
-// TODO: By default Rmk uses USB_OTG_FS. If your microcontroller has only USB_OTF_HS, you have to update all usages below
+// TODO: USB interrupt binding varies according to the usage and chip. 
+// Check the example implementation of your microcontroller at: https://github.com/embassy-rs/embassy/blob/main/examples
 bind_interrupts!(struct Irqs {
     OTG_FS => InterruptHandler<USB_OTG_FS>;
 });

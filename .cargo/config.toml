@@ -1,9 +1,8 @@
 [target.'cfg(all(target_arch = "arm", target_os = "none"))']
-# TODO: use probe-rs chip list to get your chip name for probe-rs 
 {% if microcontroller_family == "rp" %}
 runner = "probe-rs run --chip rp2040"
-{% endif %}
-{% if microcontroller_family == "stm32" %}
+{% else %}
+# TODO: use `probe-rs chip list` to get your chip name 
 runner = "probe-rs run --chip {{ chip }}"
 {% endif %}
 
@@ -26,7 +25,11 @@ rustflags = [
 
 [build]
 # Pick ONE of these default compilation targets
+{% if microcontroller_family != "rp" %}
 target = "{{ target }}"
+{% else %}
+target = "thumbv6m-none-eabi"        # Cortex-M0 and Cortex-M0+
+{% endif %}
 # target = "thumbv6m-none-eabi"        # Cortex-M0 and Cortex-M0+
 # target = "thumbv7m-none-eabi"        # Cortex-M3
 # target = "thumbv7em-none-eabi"       # Cortex-M4 and Cortex-M7 (no FPU)
@@ -34,4 +37,5 @@ target = "{{ target }}"
 # target = "thumbv8m.main-none-eabihf" # Cortex-M33 (with FPU)
 
 [env]
+# TODO: set DEFMT_LOG to "error" to reduce the binary size
 DEFMT_LOG = "info"

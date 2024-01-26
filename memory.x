@@ -1,4 +1,5 @@
 {% if microcontroller_family == "stm32" %}
+/* TODO: Update this link script for your microcontroller */
 MEMORY
 {
   /* NOTE K = KiBi = 1024 bytes */
@@ -10,8 +11,7 @@ MEMORY
 /* The stack is of the full descending type. */
 /* NOTE Do NOT modify `_stack_start` unless you know what you are doing */
 _stack_start = ORIGIN(RAM) + LENGTH(RAM);
-{% endif %}
-{% if microcontroller_family == "rp" %}
+{% elsif microcontroller_family == "rp" %}
 MEMORY {
     BOOT2 : ORIGIN = 0x10000000, LENGTH = 0x100
     FLASH : ORIGIN = 0x10000100, LENGTH = 2048K - 0x100

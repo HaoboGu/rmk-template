@@ -1,22 +1,3 @@
-// DEPRECIATED
-macro_rules! _config_matrix_pins {
-    (input: [$($in_port:ident.$in_pin:ident), *], output: [$($out_port:ident.$out_pin:ident), +]) => {
-        {
-            $(
-                let $in_pin = $in_port.$in_pin.into_pull_down_input().erase();
-            )*
-            $(
-                let mut $out_pin = $out_port.$out_pin.into_push_pull_output().erase();
-            )+
-            $(
-                $out_pin.set_low();
-            )+
-            let output_pins = [$($out_pin), +];
-            let input_pins = [$($in_pin), +];
-            (input_pins, output_pins)
-        }
-    };
-}
 {% if microcontroller_family == "rp" %}
 macro_rules! config_matrix_pins_rp {
     (peripherals: $p:ident, input: [$($in_pin:ident), *], output: [$($out_pin:ident), +]) => {
@@ -30,8 +11,7 @@ macro_rules! config_matrix_pins_rp {
         }
     };
 }
-{% endif %}
-{% if microcontroller_family == "stm32" %}
+{% elsif microcontroller_family == "stm32" %}
 macro_rules! config_matrix_pins_stm32 {
     (peripherals: $p:ident, input: [$($in_pin:ident), *], output: [$($out_pin:ident), +]) => {
         {

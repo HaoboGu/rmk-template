@@ -1,5 +1,9 @@
 [hooks]
+pre = ["pre-script.rhai"]
 post = ["post-script.rhai"]
+
+[template]
+ignore = [ "README.md" ]
 
 [placeholders.microcontroller_family]
 type = "string"
@@ -8,7 +12,7 @@ prompt = "Choose your microcontroller family"
 choices = ["stm32", "rp"]
 default = "stm32"
 
-[placeholders.target]
+[conditional.'microcontroller_family != "rp"'.placeholders.target]
 type = "string"
 prompt = "Choose your microcontroller's target"
 choices = [
