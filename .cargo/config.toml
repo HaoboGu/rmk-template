@@ -1,5 +1,5 @@
 [target.'cfg(all(target_arch = "arm", target_os = "none"))']
-{% if microcontroller_family == "rp" %}
+{% if microcontroller_family == "rp2040" %}
 runner = "probe-rs run --chip rp2040"
 {% else %}
 # TODO: use `probe-rs chip list` to get your chip name 
@@ -25,7 +25,7 @@ rustflags = [
 
 [build]
 # Pick ONE of these default compilation targets
-{% if microcontroller_family != "rp" %}
+{% if microcontroller_family != "rp2040" %}
 target = "{{ target }}"
 {% else %}
 target = "thumbv6m-none-eabi"        # Cortex-M0 and Cortex-M0+

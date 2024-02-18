@@ -8,11 +8,10 @@ ignore = [ "README.md" ]
 [placeholders.microcontroller_family]
 type = "string"
 prompt = "Choose your microcontroller family"
-# TODO: add nrf
-choices = ["stm32", "rp"]
+choices = ["stm32", "rp2040", "nrf"]
 default = "stm32"
 
-[conditional.'microcontroller_family != "rp"'.placeholders.target]
+[conditional.'microcontroller_family == "stm32"'.placeholders.target]
 type = "string"
 prompt = "Choose your microcontroller's target"
 choices = [
@@ -25,11 +24,25 @@ choices = [
 ]
 default = "thumbv7em-none-eabihf"
 
+[conditional.'microcontroller_family == "nrf"'.placeholders.chip]
+type = "string"
+prompt = "Choose your nrf MCU model"
+choices = [
+    "nrf52840",
+    "nrf52833",
+    "nrf52832",
+    "nrf52820",
+    "nrf52811",
+    "nrf52810",
+    "nrf52805",
+]
+default = "nrf52840"
+
 [conditional.'microcontroller_family == "stm32"']
 ignore = ['src/main_rp.rs', 'src/main_nrf.rs']
-[conditional.'microcontroller_family == "rp"']
+[conditional.'microcontroller_family == "rp2040"']
 ignore = ['src/main_stm32.rs', 'src/main_nrf.rs']
 
-[conditional.'microcontroller_family == "stm32" || microcontroller_family == "nrf"'.placeholders.chip]
+[conditional.'microcontroller_family == "stm32"'.placeholders.chip]
 type = "string"
 prompt = "Enter your MCU model(Embassy feature name)"

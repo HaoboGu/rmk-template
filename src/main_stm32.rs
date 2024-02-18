@@ -20,7 +20,7 @@ use embassy_stm32::{
     Config,
 };
 use panic_probe as _;
-use rmk::{initialize_keyboard_and_run, keymap::KeyMap};
+use rmk::{initialize_keyboard_with_config_and_run, keymap::KeyMap, config::{RmkConfig, VialConfig}};
 use static_cell::StaticCell;
 use vial::{VIAL_KEYBOARD_DEF, VIAL_KEYBOARD_ID};
 
@@ -69,8 +69,15 @@ async fn main(_spawner: Spawner) {
         None,
     )));
 
+    let vial_config = VialConfig::new(VIAL_KEYBOARD_ID, VIAL_KEYBOARD_DEF);
+
+    let keyboard_config = RmkConfig {
+        vial_config,
+        ..Default::default()
+    };
+
     // Start serving
-    initialize_keyboard_and_run::<
+    initialize_keyboard_with_config_and_run::<
         Driver<'_, USB_OTG_FS>,
         Input<'_, AnyPin>,
         Output<'_, AnyPin>,
@@ -79,13 +86,6 @@ async fn main(_spawner: Spawner) {
         ROW,
         COL,
         NUM_LAYER,
-    >(
-        driver,
-        input_pins,
-        output_pins,
-        keymap,
-        VIAL_KEYBOARD_ID,
-        VIAL_KEYBOARD_DEF,
-    )
+    >(driver, input_pins, output_pins, keymap, keyboard_config)
     .await;
 }

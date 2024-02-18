@@ -20,7 +20,11 @@ use embassy_rp::{
     usb::{Driver, InterruptHandler},
 };
 use panic_probe as _;
-use rmk::{initialize_keyboard_and_run, keymap::KeyMap};
+use rmk::{
+    config::{RmkConfig, VialConfig},
+    initialize_keyboard_with_config_and_run,
+    keymap::KeyMap,
+};
 use static_cell::StaticCell;
 use vial::{VIAL_KEYBOARD_DEF, VIAL_KEYBOARD_ID};
 
@@ -33,7 +37,7 @@ const FLASH_SIZE: usize = 2 * 1024 * 1024;
 
 #[embassy_executor::main]
 async fn main(_spawner: Spawner) {
-    info!("Rmk start!");
+    info!("RMK start!");
     // Initialize peripherals
     let p = embassy_rp::init(Default::default());
 
@@ -63,8 +67,15 @@ async fn main(_spawner: Spawner) {
         None,
     )));
 
-    // Initialize all utilities: keyboard, usb and keymap
-    initialize_keyboard_and_run::<
+    let vial_config = VialConfig::new(VIAL_KEYBOARD_ID, VIAL_KEYBOARD_DEF);
+
+    let keyboard_config = RmkConfig {
+        vial_config,
+        ..Default::default()
+    };
+
+    // Start serving
+    initialize_keyboard_with_config_and_run::<
         Driver<'_, USB>,
         Input<'_, AnyPin>,
         Output<'_, AnyPin>,
@@ -73,13 +84,6 @@ async fn main(_spawner: Spawner) {
         ROW,
         COL,
         NUM_LAYER,
-    >(
-        driver,
-        input_pins,
-        output_pins,
-        keymap,
-        VIAL_KEYBOARD_ID,
-        VIAL_KEYBOARD_DEF,
-    )
+    >(driver, input_pins, output_pins, keymap, keyboard_config)
     .await;
 }
