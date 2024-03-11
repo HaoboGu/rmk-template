@@ -3,7 +3,7 @@ pre = ["pre-script.rhai"]
 post = ["post-script.rhai"]
 
 [template]
-ignore = [ "README.md" ]
+ignore = ["README.md"]
 
 [placeholders.microcontroller_family]
 type = "string"
@@ -24,7 +24,14 @@ choices = [
 ]
 default = "thumbv7em-none-eabihf"
 
-[conditional.'microcontroller_family == "nrf"'.placeholders.chip]
+[conditional.'microcontroller_family == "nrf"'.placeholders.connection]
+type = "string"
+prompt = "Use BLE(wireless) or USB?"
+choices = ["BLE", "USB"]
+default = "BLE"
+
+# Chip models
+[conditional.'microcontroller_family == "nrf" && connection == "USB"'.placeholders.chip]
 type = "string"
 prompt = "Choose your nrf MCU model"
 choices = [
@@ -38,11 +45,48 @@ choices = [
 ]
 default = "nrf52840"
 
-[conditional.'microcontroller_family == "stm32"']
-ignore = ['src/main_rp.rs', 'src/main_nrf.rs']
-[conditional.'microcontroller_family == "rp2040"']
-ignore = ['src/main_stm32.rs', 'src/main_nrf.rs']
-
 [conditional.'microcontroller_family == "stm32"'.placeholders.chip]
 type = "string"
 prompt = "Enter your MCU model(Embassy feature name)"
+
+# Ignores
+[conditional.'microcontroller_family == "stm32"']
+ignore = [
+    'src/main_rp.rs',
+    'src/main_nrf.rs',
+    'src/main_nrf_ble.rs',
+    'Cargo_rp.toml',
+    'Cargo_nrf.toml',
+    'Cargo_nrf_ble.toml',
+]
+
+[conditional.'microcontroller_family == "rp2040"']
+ignore = [
+    'src/main_stm32.rs',
+    'src/main_nrf.rs',
+    'src/main_nrf_ble.rs',
+    'Cargo_stm32.toml',
+    'Cargo_nrf.toml',
+    'Cargo_nrf_ble.toml',
+]
+
+[conditional.'microcontroller_family == "nrf" && connection == "USB"']
+ignore = [
+    'src/main_stm32.rs',
+    'src/main_rp.rs',
+    'src/main_nrf_ble.rs',
+    'Cargo_stm32.toml',
+    'Cargo_rp.toml',
+    'Cargo_nrf_ble.toml',
+]
+
+[conditional.'microcontroller_family == "nrf" && connection == "BLE"']
+ignore = [
+    'src/main_stm32.rs',
+    'src/main_rp.rs',
+    'src/main_nrf.rs',
+    'Cargo_stm32.toml',
+    'Cargo_rp.toml',
+    'Cargo_nrf.toml',
+]
+
