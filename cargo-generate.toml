@@ -58,6 +58,7 @@ ignore = [
     'Cargo_rp.toml',
     'Cargo_nrf.toml',
     'Cargo_nrf_ble.toml',
+    's140_nrf52_7.3.0_softdevice.hex',
 ]
 
 [conditional.'microcontroller_family == "rp2040"']
@@ -68,6 +69,7 @@ ignore = [
     'Cargo_stm32.toml',
     'Cargo_nrf.toml',
     'Cargo_nrf_ble.toml',
+    's140_nrf52_7.3.0_softdevice.hex',
 ]
 
 [conditional.'microcontroller_family == "nrf" && connection == "USB"']
@@ -78,6 +80,7 @@ ignore = [
     'Cargo_stm32.toml',
     'Cargo_rp.toml',
     'Cargo_nrf_ble.toml',
+    's140_nrf52_7.3.0_softdevice.hex',
 ]
 
 [conditional.'microcontroller_family == "nrf" && connection == "BLE"']
