@@ -36,10 +36,13 @@ async fn main(spawner: Spawner) {
     nrf_config.gpiote_interrupt_priority = Priority::P2;
     nrf_config.time_interrupt_priority = Priority::P2;
     let p = embassy_nrf::init(nrf_config);
-
+    {% if ble_chip == "nrf52840" %}
     // Pin config
     let (input_pins, output_pins) = config_matrix_pins_nrf!(peripherals: p, input: [P1_00, P1_01, P1_02, P1_03], output: [P1_05, P1_06, P1_07]);
-
+    {% elsif ble_chip == "nrf52832" %}
+    // Pin config
+    let (input_pins, output_pins) = config_matrix_pins_nrf!(peripherals: p, input: [P0_03, P0_04, P0_28, P0_29], output: [P0_07, P0_11, P0_27]);
+    {% endif %}
     let keyboard_usb_config = KeyboardUsbConfig::new(
         0x4c4b,
         0x4643,
