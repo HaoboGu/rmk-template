@@ -9,14 +9,16 @@ let conn_type = variable::get("connection");
 
 let chip = if conn_type == "BLE" {
     variable::set("connection", "BLE");
-    variable::set("chip", "nrf52840_xxAA");
-    "nrf52840"
+    let ble_chip = variable::get("ble_chip");
+    variable::set("chip", ble_chip + "_xxAA");
+    variable::set("nrf_feature", ble_chip);
+    ble_chip
 } else {
     variable::set("connection", "USB");
     variable::get("chip")
 };
 
-if chip == "nrf52840" || chip == "nrf52833" || chip == "nrf52832" || chip == "nrf52840_xxAA" {
+if chip == "nrf52840" || chip == "nrf52833" || chip == "nrf52832" || chip == "nrf52840" {
     variable::set("target", "thumbv7em-none-eabihf");
 }
 else if chip == "nrf52805" || chip == "nrf52810" || chip == "nrf52811" || chip == "nrf52820" {

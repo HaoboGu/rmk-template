@@ -45,6 +45,12 @@ choices = [
 ]
 default = "nrf52840"
 
+[conditional.'microcontroller_family == "nrf" && connection == "BLE"'.placeholders.ble_chip]
+type = "string"
+prompt = "Choose your nrf MCU model (Embassy feature name)"
+choices = ["nrf52840", "nrf52832"]
+default = "nrf52840"
+
 [conditional.'microcontroller_family == "stm32"'.placeholders.chip]
 type = "string"
 prompt = "Enter your MCU model(Embassy feature name)"
@@ -92,4 +98,3 @@ ignore = [
     'Cargo_rp.toml',
     'Cargo_nrf.toml',
 ]
-

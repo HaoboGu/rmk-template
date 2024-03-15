@@ -14,6 +14,7 @@ Keyboard firmware for cortex-m, with layer/dynamic keymap/[vial](https://get.via
 
 - [ ] Check the chip name of `probe-rs` is right, if you don't use `cargo run`, you can skip this step
 
+{% if ble_chip == "nrf52840" %}
 ## For BLE only
 
 To use NRF BLE, you should have [nrf s140 softdevice 7.3.0](https://www.nordicsemi.com/Products/Development-software/s140/download) flashed to nrf52840 first. 
@@ -32,3 +33,23 @@ The following are the detailed steps:
    ```shell
    cargo run --release
    ```
+{% elsif ble_chip == "nrf52832" %}
+## For BLE only
+
+To use NRF BLE, you should have [nrf s132 softdevice 7.3.0](https://www.nordicsemi.com/Products/Development-software/s132/download) flashed to nrf52832 first. 
+
+The following are the detailed steps:
+
+1. Erase the flash:
+   ```shell
+   probe-rs erase --chip nrf52832_xxAA
+   ```
+2. Flash softdevice firmware to flash:
+   ```shell
+   probe-rs download --verify --format hex --chip nRF52832_xxAA s132_nrf52_7.3.0_softdevice.hex
+   ```
+3. Compile, flash and run the example
+   ```shell
+   cargo run --release
+   ```
+{% endif %}
