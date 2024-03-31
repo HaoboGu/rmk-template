@@ -27,7 +27,14 @@ SECTIONS {
         KEEP(*(.boot2));
     } > BOOT2
 } INSERT BEFORE .text;
-{% elsif connection == "BLE" %}
+{% elsif ble_chip == "nrf52832" %}
+MEMORY
+{
+  /* These values correspond to the NRF52832 with Softdevices S132 7.3.0 */
+  FLASH : ORIGIN = 0x26000,    LENGTH = 0x80000 - 0x26000
+  RAM : ORIGIN = 0x20007af8, LENGTH = 0x20010000 - 0x20007af8
+}
+{% elsif ble_chip == "nrf52840" %}
 MEMORY
 {
   /* NOTE 1 K = 1 KiBi = 1024 bytes */
