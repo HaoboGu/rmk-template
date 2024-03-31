@@ -4,15 +4,13 @@ if family == "rp2040" {
 }
 
 let conn_type = variable::get("connection");
-// debug(`conn_type : ${conn_type}`);
-// debug(`family : ${family}`);
 
 let chip = if conn_type == "BLE" {
     variable::set("connection", "BLE");
-    let ble_chip = variable::get("ble_chip");
-    variable::set("chip", ble_chip + "_xxAA");
-    variable::set("nrf_feature", ble_chip);
-    ble_chip
+    let chip = variable::get("chip");
+    variable::set("chip", chip + "_xxAA");
+    variable::set("nrf_feature", chip);
+    chip
 } else {
     variable::set("connection", "USB");
     variable::get("chip")

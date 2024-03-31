@@ -20,7 +20,6 @@ choices = [
     "thumbv7em-none-eabihf",
     "thumbv7m-none-eabi",
     "thumbv8m.main-none-eabihf",
-    "riscv32imac-unknown-none-elf",
 ]
 default = "thumbv7em-none-eabihf"
 
@@ -37,15 +36,11 @@ prompt = "Choose your nrf MCU model"
 choices = [
     "nrf52840",
     "nrf52833",
-    "nrf52832",
     "nrf52820",
-    "nrf52811",
-    "nrf52810",
-    "nrf52805",
 ]
 default = "nrf52840"
 
-[conditional.'microcontroller_family == "nrf" && connection == "BLE"'.placeholders.ble_chip]
+[conditional.'microcontroller_family == "nrf" && connection == "BLE"'.placeholders.chip]
 type = "string"
 prompt = "Choose your nrf MCU model (Embassy feature name)"
 choices = ["nrf52840", "nrf52832"]
@@ -61,6 +56,7 @@ ignore = [
     'src/main_rp.rs',
     'src/main_nrf.rs',
     'src/main_nrf_ble.rs',
+    'src/main_nrf_ble_only.rs',
     'Cargo_rp.toml',
     'Cargo_nrf.toml',
     'Cargo_nrf_ble.toml',
@@ -72,6 +68,7 @@ ignore = [
     'src/main_stm32.rs',
     'src/main_nrf.rs',
     'src/main_nrf_ble.rs',
+    'src/main_nrf_ble_only.rs',
     'Cargo_stm32.toml',
     'Cargo_nrf.toml',
     'Cargo_nrf_ble.toml',
@@ -83,17 +80,30 @@ ignore = [
     'src/main_stm32.rs',
     'src/main_rp.rs',
     'src/main_nrf_ble.rs',
+    'src/main_nrf_ble_only.rs',
     'Cargo_stm32.toml',
     'Cargo_rp.toml',
     'Cargo_nrf_ble.toml',
     's140_nrf52_7.3.0_softdevice.hex',
 ]
 
-[conditional.'microcontroller_family == "nrf" && connection == "BLE"']
+[conditional.'microcontroller_family == "nrf" && connection == "BLE" && chip == "nrf52832"']
 ignore = [
     'src/main_stm32.rs',
     'src/main_rp.rs',
     'src/main_nrf.rs',
+    'src/main_nrf_ble.rs',
+    'Cargo_stm32.toml',
+    'Cargo_rp.toml',
+    'Cargo_nrf.toml',
+]
+
+[conditional.'microcontroller_family == "nrf" && connection == "BLE" && chip != "nrf52832" ']
+ignore = [
+    'src/main_stm32.rs',
+    'src/main_rp.rs',
+    'src/main_nrf.rs',
+    'src/main_nrf_ble_only.rs',
     'Cargo_stm32.toml',
     'Cargo_rp.toml',
     'Cargo_nrf.toml',

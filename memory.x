@@ -27,21 +27,21 @@ SECTIONS {
         KEEP(*(.boot2));
     } > BOOT2
 } INSERT BEFORE .text;
-{% elsif ble_chip == "nrf52832" %}
+{% elsif chip == "nrf52832_xxAA" %}
 MEMORY
 {
-  /* These values correspond to the NRF52832 with Softdevices S132 7.3.0 */
+  /* These values correspond to the nRF52832 with Softdevices S132 7.3.0 */
   FLASH : ORIGIN = 0x26000,    LENGTH = 0x80000 - 0x26000
   RAM : ORIGIN = 0x20007af8, LENGTH = 0x20010000 - 0x20007af8
 }
-{% elsif ble_chip == "nrf52840" %}
+{% elsif chip == "nrf52840_xxAA" %}
 MEMORY
 {
   /* NOTE 1 K = 1 KiBi = 1024 bytes */
   /* FLASH : ORIGIN = 0x00000000, LENGTH = 1024K
   RAM : ORIGIN = 0x20000000, LENGTH = 256K */
 
-  /* These values correspond to the NRF52840 with Softdevices S140 7.3.0 */
+  /* These values correspond to the nRF52840 with Softdevices S140 7.3.0 */
   FLASH : ORIGIN = 0x00027000, LENGTH = 868K
   RAM : ORIGIN = 0x20020000, LENGTH = 128K
 }

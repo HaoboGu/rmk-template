@@ -5,7 +5,11 @@ else if variable::get("microcontroller_family") == "rp2040" {
     file::rename("src/main_rp.rs", "src/main.rs");
 }
 else if variable::get("microcontroller_family") == "nrf" && variable::get("connection") == "BLE" {
-    file::rename("src/main_nrf_ble.rs", "src/main.rs");
+    if variable::get("chip") == "nrf52840_xxAA" {
+        file::rename("src/main_nrf_ble.rs", "src/main.rs");
+    } else if variable::get("chip") == "nrf52832_xxAA" {
+        file::rename("src/main_nrf_ble_only.rs", "src/main.rs");
+    }
 }
 else if variable::get("microcontroller_family") == "nrf" {
     file::rename("src/main_nrf.rs", "src/main.rs");
