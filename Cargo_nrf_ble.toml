@@ -1,7 +1,7 @@
 [package]
 resolver = "2"
 name = "{{project-name}}"
-version = "0.1.10"
+version = "0.1.11"
 description = "Keyboard firmware written in Rust"
 homepage = ""
 repository = ""
@@ -10,7 +10,7 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { version = "0.1.10", features = [
+rmk = { version = "0.1.11", features = [
     "{{ nrf_feature }}_ble",
     "eeprom",
     "col2row",
