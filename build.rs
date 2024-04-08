@@ -12,23 +12,23 @@
 
 use const_gen::*;
 use std::fs::File;
-{% if microcontroller_family == "esp" %}
+{% if microcontroller_family == "esp" -%}
 use std::io::Read;
 use std::path::Path;
-{% else %}
+{% else -%}
 use std::io::{Read, Write};
 use std::path::{Path, PathBuf};
-{% endif %}
+{% endif -%}
 use std::{env, fs};
 use xz2::read::XzEncoder;
 
 fn main() {
     // Generate vial config at the root of project
     generate_vial_config();
-    {% if microcontroller_family == "esp" %}
+    {% if microcontroller_family == "esp" -%}
     // ESP IDE system env
     embuild::espidf::sysenv::output();  
-    {% else %}
+    {% else -%}
     // Put `memory.x` in our output directory and ensure it's
     // on the linker search path.
     let out = &PathBuf::from(env::var_os("OUT_DIR").unwrap());
@@ -57,7 +57,7 @@ fn main() {
     // Use flip-link overflow protection: https://github.com/knurling-rs/flip-link
     println!("cargo:rustc-linker=flip-link");
 
-    {% endif %}
+    {% endif -%}
     // Set the extra linker script from defmt
     println!("cargo:rustc-link-arg=-Tdefmt.x");
 }

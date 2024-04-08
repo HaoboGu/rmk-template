@@ -1,21 +1,20 @@
-{% if microcontroller_family == "esp" %}
+{% if microcontroller_family == "esp" -%}
 [target.riscv32imc-esp-espidf]
 linker = "ldproxy"
 rustflags = [ "--cfg",  "espidf_time64"] # Extending time_t for ESP IDF 5: https://github.com/esp-rs/rust/issues/110
-{% else %}
+{% else -%}
 [target.'cfg(all(target_arch = "arm", target_os = "none"))']
-{% endif %}
-{% if microcontroller_family == "rp2040" %}
+{% endif -%}
+{% if microcontroller_family == "rp2040" -%}
 runner = "probe-rs run --chip rp2040"
 rustflags = []
-{% elsif microcontroller_family == "esp" %}
+{% elsif microcontroller_family == "esp" -%}
 runner = "espflash flash --monitor --log-format defmt"
-{% else %}
+{% else -%}
 # TODO: use `probe-rs chip list` to get your chip name 
 runner = "probe-rs run --chip {{ chip }}"
 rustflags = []
 {% endif %}
-
 [build]
 # TODO: Pick a correct compilation target for your microcontroller
 target = "{{ target }}"
@@ -23,7 +22,7 @@ target = "{{ target }}"
 [env]
 # TODO: set DEFMT_LOG to "error" to reduce the binary size
 DEFMT_LOG = "info"
-{% if microcontroller_family == "esp" %}
+{% if microcontroller_family == "esp" -%}
 MCU="esp32c3"
 # Note: this variable is not used by the pio builder (`cargo build --features pio`)
 ESP_IDF_VERSION = "v5.1.3"

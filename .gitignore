@@ -3,6 +3,7 @@ target
 *.bin
 *.elf
 *.hex
-{% if microcontroller_family == "esp" %}
+
+{% if microcontroller_family == "esp" -%}
 .embuild
 {% endif %}

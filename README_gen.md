@@ -14,7 +14,7 @@ Keyboard firmware for cortex-m, with layer/dynamic keymap/[vial](https://get.via
 
 - [ ] Check the chip name of `probe-rs` is right, if you don't use `cargo run`, you can skip this step
 
-{% if chip == "nrf52840" %}
+{% if chip == "nrf52840_xxAA" -%}
 ## For BLE only
 
 To use NRF BLE, you should have [nrf s140 softdevice 7.3.0](https://www.nordicsemi.com/Products/Development-software/s140/download) flashed to nrf52840 first. 
@@ -33,7 +33,7 @@ The following are the detailed steps:
    ```shell
    cargo run --release
    ```
-{% elsif chip == "nrf52832" %}
+{% elsif chip == "nrf52832_xxAA" -%}
 ## For BLE only
 
 To use NRF BLE, you should have [nrf s132 softdevice 7.3.0](https://www.nordicsemi.com/Products/Development-software/s132/download) flashed to nrf52832 first. 
@@ -52,7 +52,7 @@ The following are the detailed steps:
    ```shell
    cargo run --release
    ```
-{% elsif chip == "esp32c3" %}
+{% elsif chip == "esp32c3" -%}
 ## For BLE only
 
 To use ESP BLE, you should have Rust **nightly** and `esp-idf` toolchain installed. The full instruction of installing `esp-idf` toolchain can be found [here](https://docs.esp-rs.org/book/installation/index.html) and [here](https://docs.esp-rs.org/std-training/02_2_software.html)
@@ -90,4 +90,4 @@ App/part. size:    607,488/4,128,768 bytes, 14.71%
 [00:00:03] [========================================]     337/337     0x10000                                                                                                                    [2024-04-07T12:50:28Z INFO ] Flashing has completed!
 ```
 
-{% endif %}
+{% endif -%}

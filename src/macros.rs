@@ -1,4 +1,4 @@
-{% if microcontroller_family == "rp2040" %}
+{% if microcontroller_family == "rp2040" -%}
 macro_rules! config_matrix_pins_rp {
     (peripherals: $p:ident, input: [$($in_pin:ident), *], output: [$($out_pin:ident), +]) => {
         {
@@ -11,7 +11,7 @@ macro_rules! config_matrix_pins_rp {
         }
     };
 }
-{% elsif microcontroller_family == "stm32" %}
+{% elsif microcontroller_family == "stm32" -%}
 macro_rules! config_matrix_pins_stm32 {
     (peripherals: $p:ident, input: [$($in_pin:ident), *], output: [$($out_pin:ident), +]) => {
         {
@@ -24,7 +24,7 @@ macro_rules! config_matrix_pins_stm32 {
         }
     };
 }
-{% elsif microcontroller_family == "nrf" %}
+{% elsif microcontroller_family == "nrf" -%}
 macro_rules! config_matrix_pins_nrf {
     (peripherals: $p:ident, input: [$($in_pin:ident), *], output: [$($out_pin:ident), +]) => {
         {
@@ -37,7 +37,7 @@ macro_rules! config_matrix_pins_nrf {
         }
     };
 }
-{% elsif microcontroller_family == "esp" %}
+{% elsif microcontroller_family == "esp" -%}
 macro_rules! config_matrix_pins_esp {
     (peripherals: $p:ident, input: [$($in_pin:ident), *], output: [$($out_pin:ident), +]) => {
         {
@@ -50,4 +50,4 @@ macro_rules! config_matrix_pins_esp {
         }
     };
 }
-{% endif %}
+{% endif -%}

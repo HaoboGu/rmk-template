@@ -1,7 +1,7 @@
 [toolchain]
-{% if microcontroller_family == "esp" %}
+{% if microcontroller_family == "esp" -%}
 channel = "nightly"
-{% else %}
+{% else -%}
 channel = "1.75"
-{% endif %}
+{% endif -%}
 components = ["rust-src", "rustfmt", "llvm-tools"]
