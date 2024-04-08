@@ -8,7 +8,7 @@ ignore = ["README.md"]
 [placeholders.microcontroller_family]
 type = "string"
 prompt = "Choose your microcontroller family"
-choices = ["stm32", "rp2040", "nrf"]
+choices = ["stm32", "rp2040", "nrf", "esp"]
 default = "stm32"
 
 [conditional.'microcontroller_family == "stm32"'.placeholders.target]
@@ -28,6 +28,20 @@ type = "string"
 prompt = "Use BLE(wireless) or USB?"
 choices = ["BLE", "USB"]
 default = "BLE"
+
+[conditional.'microcontroller_family == "esp"'.placeholders.connection]
+type = "string"
+prompt = "Use BLE(wireless) or USB(not supported now)?"
+choices = ["BLE"]
+default = "BLE"
+
+[conditional.'microcontroller_family == "esp"'.placeholders.chip]
+type = "string"
+prompt = "Choose your esp MCU model"
+choices = [
+    "esp32c3",
+]
+default = "esp32c3"
 
 # Chip models
 [conditional.'microcontroller_family == "nrf" && connection == "USB"'.placeholders.chip]
@@ -54,13 +68,31 @@ prompt = "Enter your MCU model(Embassy feature name)"
 [conditional.'microcontroller_family == "stm32"']
 ignore = [
     'src/main_rp.rs',
+    'Cargo_rp.toml',
+    'src/main_esp.rs',
+    'Cargo_esp.toml',
+    'sdkconfig.defaults',
     'src/main_nrf.rs',
     'src/main_nrf_ble.rs',
     'src/main_nrf_ble_only.rs',
-    'Cargo_rp.toml',
     'Cargo_nrf.toml',
     'Cargo_nrf_ble.toml',
     's140_nrf52_7.3.0_softdevice.hex',
+]
+
+[conditional.'microcontroller_family == "esp"']
+ignore = [
+    'src/main_stm32.rs',
+    'Cargo_stm32.toml',
+    'src/main_rp.rs',
+    'Cargo_rp.toml',
+    'Cargo_nrf.toml',
+    'Cargo_nrf_ble.toml',
+    'src/main_nrf.rs',
+    'src/main_nrf_ble.rs',
+    'src/main_nrf_ble_only.rs',
+    's140_nrf52_7.3.0_softdevice.hex',
+    'memory.x',
 ]
 
 [conditional.'microcontroller_family == "rp2040"']
@@ -73,6 +105,9 @@ ignore = [
     'Cargo_nrf.toml',
     'Cargo_nrf_ble.toml',
     's140_nrf52_7.3.0_softdevice.hex',
+    'src/main_esp.rs',
+    'Cargo_esp.toml',
+    'sdkconfig.defaults',
 ]
 
 [conditional.'microcontroller_family == "nrf" && connection == "USB"']
@@ -85,6 +120,9 @@ ignore = [
     'Cargo_rp.toml',
     'Cargo_nrf_ble.toml',
     's140_nrf52_7.3.0_softdevice.hex',
+    'src/main_esp.rs',
+    'Cargo_esp.toml',
+    'sdkconfig.defaults',
 ]
 
 [conditional.'microcontroller_family == "nrf" && connection == "BLE" && chip == "nrf52832"']
@@ -96,6 +134,9 @@ ignore = [
     'Cargo_stm32.toml',
     'Cargo_rp.toml',
     'Cargo_nrf.toml',
+    'src/main_esp.rs',
+    'Cargo_esp.toml',
+    'sdkconfig.defaults',
 ]
 
 [conditional.'microcontroller_family == "nrf" && connection == "BLE" && chip != "nrf52832" ']
@@ -107,4 +148,7 @@ ignore = [
     'Cargo_stm32.toml',
     'Cargo_rp.toml',
     'Cargo_nrf.toml',
+    'src/main_esp.rs',
+    'Cargo_esp.toml',
+    'sdkconfig.defaults',
 ]
