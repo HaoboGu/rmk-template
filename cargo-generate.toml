@@ -40,6 +40,7 @@ type = "string"
 prompt = "Choose your esp MCU model"
 choices = [
     "esp32c3",
+    "esp32s3"
 ]
 default = "esp32c3"
 

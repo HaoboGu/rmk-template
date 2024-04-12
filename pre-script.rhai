@@ -22,3 +22,6 @@ else if chip == "nrf52805" || chip == "nrf52810" || chip == "nrf52811" || chip =
 else if chip == "esp32c3" {
     variable::set("target", "riscv32imc-esp-espidf");
 }
+else if chip == "esp32s3" {
+    variable::set("target", "xtensa-esp32s3-espidf");
+}

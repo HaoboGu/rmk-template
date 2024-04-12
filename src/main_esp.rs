@@ -1,5 +1,3 @@
-#![no_std]
-#![no_main]
 #![feature(type_alias_impl_trait)]
 
 #[macro_use]
@@ -12,16 +10,14 @@ use crate::{
     vial::{VIAL_KEYBOARD_DEF, VIAL_KEYBOARD_ID},
 };
 use defmt::*;
-use embassy_executor::Spawner;
-use esp_idf_svc::hal::{gpio::*, peripherals::Peripherals};
+use esp_idf_svc::hal::{gpio::*, peripherals::Peripherals, task::block_on};
 use esp_println as _;
 use rmk::{
     config::{RmkConfig, VialConfig},
     initialize_esp_ble_keyboard_with_config_and_run,
 };
 
-#[embassy_executor::main]
-async fn main(_spawner: Spawner) {
+fn main() {
     esp_idf_svc::sys::link_patches();
 
     // Bind the log crate to the ESP Logging facilities
@@ -32,7 +28,11 @@ async fn main(_spawner: Spawner) {
 
     // Pin config
     // WARNING: Some gpio pins shouldn't be used, the initial state is error.
+    {% if chip == "esp32c3" -%}
     // reference: table 2-3 in https://www.espressif.com.cn/sites/default/files/documentation/esp32-c3_datasheet_en.pdf
+    {% elsif chip == "esp32s3" -%}
+    // reference: table 2-3 in https://www.espressif.com.cn/sites/default/files/documentation/esp32-s3_datasheet_en.pdf
+    {% endif -%}
     let (input_pins, output_pins) = config_matrix_pins_esp!(peripherals: peripherals , input: [gpio6, gpio7, gpio20, gpio21], output: [gpio3, gpio4, gpio5]);
 
     // Keyboard config
@@ -43,7 +43,7 @@ async fn main(_spawner: Spawner) {
     };
 
     // Start serving
-    initialize_esp_ble_keyboard_with_config_and_run::<
+    block_on(initialize_esp_ble_keyboard_with_config_and_run::<
         PinDriver<'_, AnyInputPin, Input>,
         PinDriver<'_, AnyOutputPin, Output>,
         ROW,
@@ -54,6 +54,5 @@ async fn main(_spawner: Spawner) {
         input_pins,
         output_pins,
         keyboard_config,
-    )
-    .await;
+    ));
 }

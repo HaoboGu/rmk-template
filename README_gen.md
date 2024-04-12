@@ -89,5 +89,17 @@ App/part. size:    607,488/4,128,768 bytes, 14.71%
 [2024-04-07T12:50:24Z INFO ] Segment at address '0x8000' has not changed, skipping write
 [00:00:03] [========================================]     337/337     0x10000                                                                                                                    [2024-04-07T12:50:28Z INFO ] Flashing has completed!
 ```
+{% elsif chip == "esp32s3" -%}
+## For BLE only
+
+To use ESP BLE, you should have [**Rust for Xtensa target**](https://docs.esp-rs.org/book/installation/riscv-and-xtensa.html) and `esp-idf` toolchain installed. 
+The full instruction of installing `esp-idf` toolchain can be found [here](https://docs.esp-rs.org/book/installation/index.html) and [here](https://docs.esp-rs.org/std-training/02_2_software.html)
+
+To run the example, make sure that you have esp-idf environment, `ldproxy` and `espflash` installed correctly. Then, run 
+
+```
+cd boards/esp32s3_ble
+cargo run --release
+```
 
 {% endif -%}
