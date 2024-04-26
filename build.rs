@@ -25,6 +25,9 @@ use xz2::read::XzEncoder;
 fn main() {
     // Generate vial config at the root of project
     generate_vial_config();
+
+    println!("cargo:rerun-if-changed=keyboard.toml");
+
     {% if microcontroller_family == "esp" -%}
     // ESP IDE system env
     embuild::espidf::sysenv::output();  

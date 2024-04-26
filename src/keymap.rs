@@ -1,11 +1,6 @@
+use crate::{COL, NUM_LAYER, ROW};
 use rmk::action::KeyAction;
 use rmk::{a, k, layer, mo};
-
-// TODO: Update your default keymap, the layout should be identical with what's defined in `vial.json`
-// RMK provides some helpful macros for defining keymap, see: https://docs.rs/rmk/latest/rmk/#macros
-pub(crate) const COL: usize = 3;
-pub(crate) const ROW: usize = 4;
-pub(crate) const NUM_LAYER: usize = 2;
 
 #[rustfmt::skip]
 pub static KEYMAP: [[[KeyAction; COL]; ROW]; NUM_LAYER] = [

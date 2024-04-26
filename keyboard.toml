@@ -1,0 +1,55 @@
+[keyboard]
+product_name = "RMK Keyboard"
+vendor_id = 0x4c4b
+product_id = 0x4643
+manufacturer = "haobo"
+{% if microcontroller_family == "nrf" -%}
+chip = "{{ nrf_feature }}"
+{% else -%}
+chip = "{{ chip }}"
+{% endif -%}
+{% if microcontroller_family == "esp" -%}
+usb_enable = false
+{% endif %}
+[matrix]
+rows = 4
+cols = 3
+layers = 2
+# TODO: Update input/output gpio name
+# Input and output pins are mandatory
+{% if microcontroller_family == "nrf" -%}
+input_pins = ["P0_00", "P0_01", "P0_02", "P0_03"]
+output_pins = ["P0_05", "P0_06", "P0_07"]
+{% elsif microcontroller_family == "esp" -%}
+input_pins = ["gpio6", "gpio7", "gpio20", "gpio21"]
+output_pins = ["gpio3", "gpio4", "gpio5"]
+{% elsif microcontroller_family == "rp2040" -%}
+input_pins = ["PIN_6", "PIN_7", "PIN_8", "PIN_9"]
+output_pins = ["PIN_19", "PIN_20", "PIN_21"]
+{% elsif microcontroller_family == "stm32" -%}
+input_pins = ["PD4", "PD8", "PD6", "PD7"]
+output_pins = ["PD5", "PD9", "PD10"]
+{% endif -%}
+
+# WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
+# row2col = true
+
+[layout]
+
+[light]
+# All light pins are high-active by default, uncomment if you want it to be low-active
+# capslock.pin = "PB2"
+# capslock.low_active = true
+# scrolllock.pin = "PA3"
+# scrolllock.low_active = true
+# Just ignore if no light pin is used for it
+# numslock.pin = "PA5"
+# numslock.low_active = true
+
+[storage]
+# Storage feature is enabled by default
+# enabled = false
+{% if connection == "BLE" -%}
+[ble]
+enabled = true
+{% endif %}

@@ -10,7 +10,7 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { version = "0.1.11"}
+rmk = { version = "0.1.12", path = "/Users/haobogu/Projects/keyboard/rmk/rmk"}
 cortex-m-rt = "0.7.3"
 cortex-m = { version = "0.7.7", features = ['critical-section-single-core'] }
 embassy-stm32 = { version = "0.1.0", features = [
