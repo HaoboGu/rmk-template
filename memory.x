@@ -1,4 +1,4 @@
-{% if microcontroller_family == "stm32" %}
+{% if microcontroller_family == "stm32" -%}
 /* TODO: Update this link script for your microcontroller */
 MEMORY
 {
@@ -11,7 +11,7 @@ MEMORY
 /* The stack is of the full descending type. */
 /* NOTE Do NOT modify `_stack_start` unless you know what you are doing */
 _stack_start = ORIGIN(RAM) + LENGTH(RAM);
-{% elsif microcontroller_family == "rp2040" %}
+{% elsif microcontroller_family == "rp2040" -%}
 MEMORY {
     BOOT2 : ORIGIN = 0x10000000, LENGTH = 0x100
     FLASH : ORIGIN = 0x10000100, LENGTH = 2048K - 0x100
@@ -27,14 +27,14 @@ SECTIONS {
         KEEP(*(.boot2));
     } > BOOT2
 } INSERT BEFORE .text;
-{% elsif chip == "nrf52832_xxAA" %}
+{% elsif chip == "nrf52832_xxAA" -%}
 MEMORY
 {
   /* These values correspond to the nRF52832 with Softdevices S132 7.3.0 */
   FLASH : ORIGIN = 0x26000,    LENGTH = 0x80000 - 0x26000
   RAM : ORIGIN = 0x20007af8, LENGTH = 0x20010000 - 0x20007af8
 }
-{% elsif chip == "nrf52840_xxAA" %}
+{% elsif chip == "nrf52840_xxAA" -%}
 MEMORY
 {
   /* NOTE 1 K = 1 KiBi = 1024 bytes */
@@ -45,7 +45,7 @@ MEMORY
   FLASH : ORIGIN = 0x00027000, LENGTH = 868K
   RAM : ORIGIN = 0x20020000, LENGTH = 128K
 }
-{% elsif microcontroller_family == "nrf" %}
+{% elsif microcontroller_family == "nrf" -%}
 /* TODO: Update this link script for your microcontroller */
 MEMORY
 {
@@ -57,4 +57,4 @@ MEMORY
   /* FLASH : ORIGIN = 0x00027000, LENGTH = 868K
   RAM : ORIGIN = 0x20020000, LENGTH = 128K */
 }
-{% endif %}
+{% endif -%}

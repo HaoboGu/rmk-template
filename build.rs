@@ -12,8 +12,13 @@
 
 use const_gen::*;
 use std::fs::File;
+{% if microcontroller_family == "esp" -%}
+use std::io::Read;
+use std::path::Path;
+{% else -%}
 use std::io::{Read, Write};
 use std::path::{Path, PathBuf};
+{% endif -%}
 use std::{env, fs};
 use xz2::read::XzEncoder;
 
@@ -21,6 +26,12 @@ fn main() {
     // Generate vial config at the root of project
     generate_vial_config();
 
+    println!("cargo:rerun-if-changed=keyboard.toml");
+
+    {% if microcontroller_family == "esp" -%}
+    // ESP IDE system env
+    embuild::espidf::sysenv::output();  
+    {% else -%}
     // Put `memory.x` in our output directory and ensure it's
     // on the linker search path.
     let out = &PathBuf::from(env::var_os("OUT_DIR").unwrap());
@@ -46,11 +57,12 @@ fn main() {
     // Set the linker script to the one provided by cortex-m-rt.
     println!("cargo:rustc-link-arg=-Tlink.x");
 
-    // Set the extra linker script from defmt
-    println!("cargo:rustc-link-arg=-Tdefmt.x");
-
     // Use flip-link overflow protection: https://github.com/knurling-rs/flip-link
     println!("cargo:rustc-linker=flip-link");
+
+    {% endif -%}
+    // Set the extra linker script from defmt
+    println!("cargo:rustc-link-arg=-Tdefmt.x");
 }
 
 

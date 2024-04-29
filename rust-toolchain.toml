@@ -1,3 +1,10 @@
 [toolchain]
+{% if chip == "esp32c3" -%}
+channel = "nightly"
+components = ["rust-src", "rustfmt", "llvm-tools"]
+{% elsif chip == "esp32s3" -%}
+channel = "esp"
+{% else -%}
 channel = "1.75"
 components = ["rust-src", "rustfmt", "llvm-tools"]
+{% endif -%}
