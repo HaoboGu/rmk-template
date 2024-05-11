@@ -34,9 +34,9 @@ jobs:
       working-directory: ../esp32c3
       run: cargo +nightly build --release
     - name: Install espup
-      run: cargo install espup
+      run: cd .. && cargo install espup
     - name: Install esp toolchain
-      run: espup install
+      run: cd .. && espup install
     - name: Build esp32s3
       working-directory: ../esp32s3
       run: cargo +esp build --release
