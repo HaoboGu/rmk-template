@@ -23,10 +23,11 @@ jobs:
     - name: Run expect script
       run: cd .. && expect rmk-template/gen_test_projects.sh
     - name: Install target
-      run: rustup target add thumbv7em-none-eabihf thumbv6m-none-eabi thumbv7em-none-eabi
+      run: cd .. && rustup target add thumbv7em-none-eabihf thumbv6m-none-eabi thumbv7em-none-eabi
     - name: Build rp2040
+      working-directory: ../rp
       run: cargo build --release
     - name: Build stm32
-      working-directory: ./stm32h7
+      working-directory: ../stm32h7
       run: cargo build --release
 
