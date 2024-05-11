@@ -16,8 +16,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Install essentials
+    - name: Install expect
       run: sudo apt install expect -y
+    - name: Install cargo-generate
+      run: cargo install carge-generate
     - name: Run expect script
       run: cd .. && expect rmk-template/gen_test_projects.sh
     - name: Install target
