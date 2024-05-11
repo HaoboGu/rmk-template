@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install essentials
-      run: apt install expect -y
+      run: sudo apt install expect -y
     - name: Run expect script
       run: cd .. && sh rmk-template/test.sh
     - name: Install target
