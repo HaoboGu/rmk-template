@@ -19,7 +19,7 @@ jobs:
     - name: Install expect
       run: sudo apt install expect -y
     - name: Install cargo-generate
-      run: cd .. && cargo install carge-generate
+      run: cd .. && cargo install cargo-generate
     - name: Run expect script
       run: cd .. && expect rmk-template/gen_test_projects.sh
     - name: Install target
