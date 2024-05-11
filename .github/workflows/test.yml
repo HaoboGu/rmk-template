@@ -1,0 +1,31 @@
+name: Test rmk-template
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install essentials
+      run: apt install expect -y
+    - name: Run expect script
+      run: cd .. && sh rmk-template/test.sh
+    - name: Install target
+      run: rustup target add thumbv7em-none-eabihf thumbv6m-none-eabi thumbv7em-none-eabi
+    - name: Build rp2040
+      working-directory: ./rp
+      run: cargo build --release
+    - name: Build stm32
+      working-directory: ./stm32h7
+      run: cargo build --release
+
