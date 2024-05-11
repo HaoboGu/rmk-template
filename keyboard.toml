@@ -11,6 +11,9 @@ chip = "{{ chip }}"
 {% if microcontroller_family == "esp" -%}
 usb_enable = false
 {% endif %}
+{% if chip == "nrf52832_xxAA" -%}
+usb_enable = false
+{% endif %}
 [matrix]
 rows = 4
 cols = 3
