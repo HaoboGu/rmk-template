@@ -28,7 +28,15 @@ jobs:
     - name: Build rp2040
       working-directory: ../rp
       run: cargo build --release
+    - name: Build nrf52832_ble
+      working-directory: ../nrf52832_ble
+      run: cargo build --release
+    - name: Build nrf52840_ble
+      working-directory: ../nrf52840_ble
+      run: cargo build --release
+    - name: Build nrf_usb
+      working-directory: ../nrf_usb
+      run: cargo build --release
     - name: Build stm32
       working-directory: ../stm32h7
       run: cargo build --release
-
