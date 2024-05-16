@@ -1,0 +1,42 @@
+name: Test rmk-template
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install expect
+      run: sudo apt install expect -y
+    - name: Install cargo-generate
+      run: cd .. && cargo install cargo-generate
+    - name: Run expect script
+      run: cd .. && expect rmk-template/gen_test_projects.sh
+    - name: Install target
+      working-directory: ..
+      run: rustup default 1.77 && rustup target add thumbv7em-none-eabihf thumbv6m-none-eabi thumbv7em-none-eabi thumbv6m-none-eabi
+    - name: Build rp2040
+      working-directory: ../rp
+      run: cargo build --release
+    - name: Build nrf52832_ble
+      working-directory: ../nrf52832_ble
+      run: cargo build --release
+    - name: Build nrf52840_ble
+      working-directory: ../nrf52840_ble
+      run: cargo build --release
+    - name: Build nrf_usb
+      working-directory: ../nrf_usb
+      run: cargo build --release
+    - name: Build stm32
+      working-directory: ../stm32h7
+      run: cargo build --release
