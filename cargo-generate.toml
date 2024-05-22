@@ -67,6 +67,7 @@ ignore = [
     'Cargo_nrf_ble.toml',
     'sdkconfig.defaults',
     's140_nrf52_7.3.0_softdevice.hex',
+    'gen_test_projects.sh',
 ]
 
 [conditional.'microcontroller_family == "nrf" && connection == "USB"']
@@ -77,6 +78,7 @@ ignore = [
     'Cargo_esp.toml',
     's140_nrf52_7.3.0_softdevice.hex',
     'sdkconfig.defaults',
+    'gen_test_projects.sh',
 ]
 
 [conditional.'microcontroller_family == "rp2040"']
@@ -87,6 +89,7 @@ ignore = [
     'Cargo_esp.toml',
     's140_nrf52_7.3.0_softdevice.hex',
     'sdkconfig.defaults',
+    'gen_test_projects.sh',
 ]
 
 [conditional.'microcontroller_family == "esp"']
@@ -97,6 +100,7 @@ ignore = [
     'Cargo_nrf_ble.toml',
     's140_nrf52_7.3.0_softdevice.hex',
     'memory.x',
+    'gen_test_projects.sh',
 ]
 
 [conditional.'microcontroller_family == "nrf" && connection == "BLE"']
@@ -106,4 +110,5 @@ ignore = [
     'Cargo_nrf.toml',
     'Cargo_esp.toml',
     'sdkconfig.defaults',
+    'gen_test_projects.sh',
 ]
