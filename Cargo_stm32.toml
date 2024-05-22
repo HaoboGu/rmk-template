@@ -17,6 +17,7 @@ embassy-stm32 = { version = "0.1.0", features = [
     "{{ chip }}",
     "defmt",
     "time-driver-any",
+    "memory-x",
     "time",
 ] }
 embassy-time = { version = "0.3", features = ["tick-hz-32_768", "defmt"] }
