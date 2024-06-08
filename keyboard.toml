@@ -38,6 +38,20 @@ output_pins = ["PD5", "PD9", "PD10"]
 # row2col = true
 
 [layout]
+keymap = [
+    [
+        ["Kp7", "Kp8", "Kp9"],
+        ["Kp4", "Kp5", "Kp6"],
+        ["Kp1", "Kp2", "Kp3"],
+        ["Kp0", "MO(1)", "Dot"]
+    ],
+    [
+        ["_", "_", "_"],
+        ["_", "_", "_"],
+        ["_", "_", "_"],
+        ["_", "_", "_"]
+    ],
+]
 
 [light]
 # All light pins are high-active by default, uncomment if you want it to be low-active

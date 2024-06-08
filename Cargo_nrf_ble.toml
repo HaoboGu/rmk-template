@@ -10,8 +10,9 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { version = "0.1.15", git = "https://github.com/haobogu/rmk", features = [
+rmk = { version = "0.1.21", git = "https://github.com/haobogu/rmk", features = [
     "{{ nrf_feature }}_ble",
+    "async_matrix",
 ] }
 cortex-m-rt = "0.7.3"
 cortex-m = "0.7.7"
