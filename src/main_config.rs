@@ -5,7 +5,6 @@
 #![no_main]
 {% endif %}
 
-mod keymap;
 mod vial;
 
 use crate::keymap::KEYMAP;
