@@ -10,7 +10,7 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { version = "0.2.2", features = [
+rmk = { version = "0.2.3", features = [
     "{{ nrf_feature }}_ble",
     "async_matrix",
 ] }
