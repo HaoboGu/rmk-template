@@ -24,7 +24,7 @@ jobs:
       run: cd .. && expect rmk-template/gen_test_projects.sh
     - name: Install target
       working-directory: ..
-      run: rustup default 1.77 && rustup target add thumbv7em-none-eabihf thumbv6m-none-eabi thumbv7em-none-eabi thumbv6m-none-eabi
+      run: rustup default stable && rustup target add thumbv7em-none-eabihf thumbv6m-none-eabi thumbv7em-none-eabi thumbv6m-none-eabi
     - name: Build rp2040
       working-directory: ../rp
       run: cargo build --release
