@@ -10,7 +10,7 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { version = "0.2.3" }
+rmk = { version = "0.2.4" }
 cortex-m-rt = "0.7.3"
 cortex-m = { version = "0.7.7", features = ['critical-section-single-core'] }
 embassy-stm32 = { version = "0.1.0", features = [
@@ -21,7 +21,7 @@ embassy-stm32 = { version = "0.1.0", features = [
     "time",
 ] }
 embassy-time = { version = "0.3", features = ["tick-hz-32_768", "defmt"] }
-embassy-executor = { version = "0.5.0", features = [
+embassy-executor = { version = "0.6", features = [
     "defmt",
     "arch-cortex-m",
     "executor-thread",

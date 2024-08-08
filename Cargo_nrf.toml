@@ -10,10 +10,10 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { version = "0.2.3" }
+rmk = { version = "0.2.4" }
 cortex-m-rt = "0.7.3"
 cortex-m = { version = "0.7.7", features = ['critical-section-single-core'] }
-embassy-nrf = { version = "0.1.0", features = [
+embassy-nrf = { version = "0.2", features = [
     "{{ nrf_feature }}",
     "defmt",
     "time-driver-rtc1",
@@ -21,7 +21,7 @@ embassy-nrf = { version = "0.1.0", features = [
     "gpiote",
     "time",
 ] }
-embassy-executor = { version = "0.5.0", features = [
+embassy-executor = { version = "0.6", features = [
     "defmt",
     "arch-cortex-m",
     "executor-thread",

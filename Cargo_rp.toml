@@ -10,16 +10,16 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { version = "0.2.3" }
+rmk = { version = "0.2.4" }
 cortex-m-rt = "0.7.3"
-embassy-rp = { version = "0.1", features = [
+embassy-rp = { version = "0.2", features = [
     "defmt",
     "time-driver",
     "critical-section-impl",
 ] }
 embassy-time = { version = "0.3", features = ["defmt"] }
 portable-atomic = { version = "1.5", features = ["critical-section"] }
-embassy-executor = { version = "0.5.0", features = [
+embassy-executor = { version = "0.6", features = [
     "defmt",
     "arch-cortex-m",
     "executor-thread",
