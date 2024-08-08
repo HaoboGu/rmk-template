@@ -22,21 +22,21 @@ jobs:
       run: cd .. && cargo install cargo-generate
     - name: Install ldproxy
       run: cd .. && cargo install ldproxy
-    - name: Switch to nightly
-      run: cd .. && rustup default nightly
-    - name: Add targets to nightly
-      run: cd .. && rustup target add riscv32imc-unknown-none-elf --toolchain nightly
-    - name: Add components to nightly
-      run: cd .. && rustup component add rust-src --toolchain nightly
+    # - name: Switch to nightly
+    #   run: cd .. && rustup default nightly
+    # - name: Add targets to nightly
+    #   run: cd .. && rustup target add riscv32imc-unknown-none-elf --toolchain nightly
+    # - name: Add components to nightly
+    #   run: cd .. && rustup component add rust-src --toolchain nightly
     - name: Run expect script
       run: cd .. && expect rmk-template/gen_test_projects.sh
-    - name: Build esp32c3
-      working-directory: ../esp32c3
-      run: cargo +nightly build --release
     - name: Install espup
       run: cd .. && cargo install espup
     - name: Install esp toolchain
       run: cd .. && espup install
+    - name: Build esp32c3
+      working-directory: ../esp32c3
+      run: cargo +esp build --release
     - name: Build esp32s3
       working-directory: ../esp32s3
       run: cargo +esp build --release
