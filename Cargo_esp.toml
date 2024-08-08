@@ -33,7 +33,7 @@ esp-idf-svc = { version = "0.49", default-features = false, features = [
 xz2 = "0.1.7"
 json = "0.12"
 const-gen = "1.6"
-embuild = "0.31.3"
+embuild = "0.32"
 
 [profile.dev]
 codegen-units = 1      # better optimizations
