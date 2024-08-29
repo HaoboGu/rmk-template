@@ -27,6 +27,7 @@ fn main() {
     generate_vial_config();
 
     println!("cargo:rerun-if-changed=keyboard.toml");
+    println!("cargo:rerun-if-changed=vial.json");
 
     {% if microcontroller_family == "esp" -%}
     // ESP IDE system env
