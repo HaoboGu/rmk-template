@@ -70,3 +70,45 @@ keymap = [
 [ble]
 enabled = true
 {% endif %}
+
+{% if keyboard_type == "split" -%}
+[split]
+{% if connection == "BLE" -%}
+connection = "ble"
+{% elsif connection == "USB" -%}
+connection = "serial"
+{% endif %}
+
+[split.central]
+rows = 2
+cols = 2
+row_offset = 0
+col_offset = 0
+{% if split_microcontroller == "nrf52840" -%}
+ble_addr = [0x18, 0xe2, 0x21, 0x80, 0xc0, 0xc7]
+input_pins = ["P0_12", "P0_13"]
+output_pins = ["P0_14", "P0_15"]
+{% elsif split_microcontroller == "rp2040" -%}
+serial = [
+    { instance = "UART0", tx_pin = "PIN_0", rx_pin = "PIN_1" },
+]
+input_pins = ["PIN_9", "PIN_11"]
+output_pins = ["PIN_10", "PIN_12"]
+{% endif %}
+
+[[split.peripheral]]
+rows = 2
+cols = 1
+row_offset = 2
+col_offset = 2
+{% if split_microcontroller == "nrf52840" -%}
+ble_addr = [0x7e, 0xfe, 0x73, 0x9e, 0x66, 0xe3]
+input_pins = ["P1_11", "P1_10"]
+output_pins = ["P0_30"]
+{% elsif split_microcontroller == "rp2040" -%}
+serial = [{ instance = "UART0", tx_pin = "PIN_0", rx_pin = "PIN_1" }]
+input_pins = ["PIN_9", "PIN_11"]
+output_pins = ["PIN_10"]
+{% endif %}
+
+{% endif %}

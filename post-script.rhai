@@ -1,4 +1,6 @@
-file::rename("src/main_config.rs", "src/main.rs");
+if variable::get("keyboard_type") == "normal" {
+    file::rename("src/main_config.rs", "src/main.rs");
+}
 if variable::get("microcontroller_family") == "stm32" {
     file::rename("Cargo_stm32.toml", "Cargo.toml");
 }

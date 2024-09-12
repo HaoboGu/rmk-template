@@ -5,7 +5,19 @@ post = ["post-script.rhai"]
 [template]
 ignore = ["README.md"]
 
-[placeholders.microcontroller_family]
+[placeholders.keyboard_type]
+type = "string"
+prompt = "Choose your keyboard type"
+choices = ["normal", "split"]
+default = "normal"
+
+[conditional.'keyboard_type == "split"'.placeholders.split_microcontroller]
+type = "string"
+prompt = "Choose your microcontroller for your split keyboard"
+choices = ["rp2040", "nrf52840"]
+default = "rp2040"
+
+[conditional.'keyboard_type == "normal"'.placeholders.microcontroller_family]
 type = "string"
 prompt = "Choose your microcontroller family"
 choices = ["stm32", "rp2040", "nrf", "esp"]
@@ -59,8 +71,32 @@ type = "string"
 prompt = "Enter your MCU model(Embassy feature name)"
 
 # Ignores
+[conditional.'keyboard_type == "split" && split_microcontroller == "nrf52840"']
+ignore = [
+    'src/main_config.rs',
+    'Cargo_stm32.toml',
+    'Cargo_rp.toml',
+    'Cargo_nrf.toml',
+    'Cargo_esp.toml',
+    'sdkconfig.defaults',
+    '.github',
+    'gen_test_projects.sh',
+]
+[conditional.'keyboard_type == "split" && split_microcontroller == "rp2040"']
+ignore = [
+    'src/main_config.rs',
+    'Cargo_stm32.toml',
+    'Cargo_nrf.toml',
+    'Cargo_nrf_ble.toml',
+    'Cargo_esp.toml',
+    'sdkconfig.defaults',
+    '.github',
+    'gen_test_projects.sh',
+]
 [conditional.'microcontroller_family == "stm32"']
 ignore = [
+    'src/central.rs',
+    'src/peripheral.rs',
     'Cargo_rp.toml',
     'Cargo_esp.toml',
     'Cargo_nrf.toml',
@@ -73,6 +109,8 @@ ignore = [
 
 [conditional.'microcontroller_family == "nrf" && connection == "USB"']
 ignore = [
+    'src/central.rs',
+    'src/peripheral.rs',
     'Cargo_stm32.toml',
     'Cargo_rp.toml',
     'Cargo_nrf_ble.toml',
@@ -85,6 +123,8 @@ ignore = [
 
 [conditional.'microcontroller_family == "rp2040"']
 ignore = [
+    'src/central.rs',
+    'src/peripheral.rs',
     'Cargo_stm32.toml',
     'Cargo_nrf.toml',
     'Cargo_nrf_ble.toml',
@@ -97,6 +137,8 @@ ignore = [
 
 [conditional.'microcontroller_family == "esp"']
 ignore = [
+    'src/central.rs',
+    'src/peripheral.rs',
     'Cargo_stm32.toml',
     'Cargo_rp.toml',
     'Cargo_nrf.toml',
@@ -109,6 +151,8 @@ ignore = [
 
 [conditional.'microcontroller_family == "nrf" && connection == "BLE"']
 ignore = [
+    'src/central.rs',
+    'src/peripheral.rs',
     'Cargo_stm32.toml',
     'Cargo_rp.toml',
     'Cargo_nrf.toml',

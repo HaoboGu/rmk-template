@@ -40,3 +40,12 @@ jobs:
     - name: Build stm32
       working-directory: ../stm32h7
       run: cargo build --release
+    - name: Build rp2040 split
+      working-directory: ../rp_split
+      run: cargo build --release --bin central
+      run: cargo build --release --bin peripheral
+    - name: Build nrf52840 split
+      working-directory: ../nrf52840_ble_split
+      run: cargo build --release --bin central
+      run: cargo build --release --bin peripheral
+
