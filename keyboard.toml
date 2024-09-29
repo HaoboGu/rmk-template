@@ -66,6 +66,11 @@ keymap = [
 [storage]
 # Storage feature is enabled by default
 # enabled = false
+
+# !!! Warning: RMK uses last 2 sectors of your microcontroller's flash by default. You have to ensure that those flash space is not used.
+# If you're using a bootloader which puts itself at the end of the flast, like Adafruit_nRF52_Bootloader, RMK will break the bootloader.
+# Setting the `start_addr` manually to avoid this. See: https://haobogu.github.io/rmk/storage.html
+
 {% if connection == "BLE" -%}
 [ble]
 enabled = true
