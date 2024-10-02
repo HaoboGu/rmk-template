@@ -12,6 +12,8 @@ Keyboard firmware for cortex-m, with layer/dynamic keymap/[vial](https://get.via
 
 - [ ] Check the chip name of `probe-rs` is right, if you don't use `cargo run`, you can skip this step
 
+- [ ] Update the family ID of your microcontroller in `Makefile.toml`, if you want to generate .uf2 firmware. The available family ID can be found in `scripts/uf2conv.py`
+
 {% if chip == "nrf52840_xxAA" -%}
 ## For BLE only
 

@@ -79,6 +79,7 @@ ignore = [
     'Cargo_nrf.toml',
     'Cargo_esp.toml',
     'sdkconfig.defaults',
+    'Makefile.toml',
     '.github',
     'gen_test_projects.sh',
 ]
@@ -90,6 +91,7 @@ ignore = [
     'Cargo_nrf_ble.toml',
     'Cargo_esp.toml',
     'sdkconfig.defaults',
+    'Makefile.toml',
     '.github',
     'gen_test_projects.sh',
 ]
@@ -103,6 +105,7 @@ ignore = [
     'Cargo_nrf_ble.toml',
     'sdkconfig.defaults',
     's140_nrf52_7.3.0_softdevice.hex',
+    'Makefile_split.toml',
     'gen_test_projects.sh',
     '.github',
 ]
@@ -117,6 +120,7 @@ ignore = [
     'Cargo_esp.toml',
     's140_nrf52_7.3.0_softdevice.hex',
     'sdkconfig.defaults',
+    'Makefile_split.toml',
     'gen_test_projects.sh',
     '.github',
 ]
@@ -131,6 +135,7 @@ ignore = [
     'Cargo_esp.toml',
     's140_nrf52_7.3.0_softdevice.hex',
     'sdkconfig.defaults',
+    'Makefile_split.toml',
     'gen_test_projects.sh',
     '.github',
 ]
@@ -145,6 +150,7 @@ ignore = [
     'Cargo_nrf_ble.toml',
     's140_nrf52_7.3.0_softdevice.hex',
     'memory.x',
+    'Makefile_split.toml',
     'gen_test_projects.sh',
     '.github',
 ]
@@ -158,6 +164,7 @@ ignore = [
     'Cargo_nrf.toml',
     'Cargo_esp.toml',
     'sdkconfig.defaults',
+    'Makefile_split.toml',
     '.github',
     'gen_test_projects.sh',
 ]
