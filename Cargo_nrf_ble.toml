@@ -26,6 +26,7 @@ embassy-nrf = { version = "0.2", features = [
     "unstable-pac",
     "gpiote",
     "time",
+    "nfc-pins-as-gpio",
 ] }
 embassy-time = { version = "0.3", features = ["tick-hz-32_768", "defmt"] }
 embassy-executor = { version = "0.6", features = [
