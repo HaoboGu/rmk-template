@@ -31,7 +31,7 @@ embassy-nrf = { version = "0.2", features = [
 embassy-time = { version = "0.3", features = ["tick-hz-32_768", "defmt"] }
 embassy-executor = { version = "0.6", features = [
     "defmt",
-    "task-arena-size-32768",
+    "task-arena-size-32768", # TODO: Change it to 16384 if you're using nRF52832/11/10
     "arch-cortex-m",
     "executor-thread",
     "integrated-timers",
