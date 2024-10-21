@@ -4,10 +4,10 @@ Template for initializing a [RMK](https://github.com/HaoboGu/rmk) keyboard firmw
 
 ## Usage
 
-1. Install `cargo generate`
+1. Install `cargo generate` and `flip-link`
 
     ```shell
-    cargo install cargo-generate
+    cargo install cargo-generate flip-link
     ```
 
 2. Create your project using the template
@@ -20,7 +20,11 @@ Template for initializing a [RMK](https://github.com/HaoboGu/rmk) keyboard firmw
 4. (optional) Install [`probe-rs`](https://github.com/probe-rs/probe-rs) for flashing and debugging
 
    ```shell
-   cargo install probe-rs --features cli
+   # https://probe.rs/docs/getting-started/installation/
+   # Linux or macOS
+   curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.sh | sh
+   # Windows
+   irm https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.ps1 | iex
    ```
 
 5. (optional) Build and flash

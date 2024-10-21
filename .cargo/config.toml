@@ -8,6 +8,7 @@ linker = "ldproxy"
 rustflags = [ "--cfg",  "espidf_time64"] # Extending time_t for ESP IDF 5: https://github.com/esp-rs/rust/issues/110
 {% else -%}
 [target.'cfg(all(target_arch = "arm", target_os = "none"))']
+linker = "flip-link"
 {% endif -%}
 {% if microcontroller_family == "rp2040" -%}
 runner = "probe-rs run --chip rp2040"
