@@ -12,6 +12,7 @@ linker = "flip-link"
 {% endif -%}
 {% if microcontroller_family == "rp2040" -%}
 runner = "probe-rs run --chip rp2040"
+# runner = "elf2uf2-rs -d" # Use elf2uf2-rs if you don't have a debug probe
 rustflags = []
 {% elsif microcontroller_family == "esp" -%}
 runner = "espflash flash --monitor --log-format defmt"

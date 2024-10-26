@@ -27,6 +27,7 @@ portable-atomic = { version = "1.5", features = ["critical-section"] }
 embassy-executor = { version = "0.6", features = [
     "defmt",
     "arch-cortex-m",
+    "task-arena-size-32768",
     "executor-thread",
     "integrated-timers",
 ] }
