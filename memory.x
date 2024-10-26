@@ -31,10 +31,10 @@ SECTIONS {
 MEMORY
 {
   /* These values correspond to the nRF52832 with Softdevices S132 7.3.0 */
-  FLASH : ORIGIN = 0x26000,    LENGTH = 0x80000 - 0x26000
-  RAM : ORIGIN = 0x20007af8, LENGTH = 0x20010000 - 0x20007af8
+  FLASH : ORIGIN = 0x26000,    LENGTH = 360K
+  RAM : ORIGIN = 0x20007af8, LENGTH = 33K
 }
-{% elsif chip == "nrf52840_xxAA" -%}
+{% elsif chip == "nrf52840_xxAA" -%34056}
 MEMORY
 {
   /* NOTE 1 K = 1 KiBi = 1024 bytes */
