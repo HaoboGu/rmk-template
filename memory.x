@@ -34,7 +34,7 @@ MEMORY
   FLASH : ORIGIN = 0x26000,    LENGTH = 360K
   RAM : ORIGIN = 0x20007af8, LENGTH = 33K
 }
-{% elsif chip == "nrf52840_xxAA" -%34056}
+{% elsif chip == "nrf52840_xxAA" -%}
 MEMORY
 {
   /* NOTE 1 K = 1 KiBi = 1024 bytes */
