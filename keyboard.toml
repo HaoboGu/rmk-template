@@ -75,4 +75,7 @@ keymap = [
 {% if connection == "BLE" -%}
 [ble]
 enabled = true
+{% elsif microcontroller_family == "nrf" -%}
+[ble]
+enabled = false
 {% endif %}
