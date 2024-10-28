@@ -15,27 +15,11 @@ usb_enable = false
 {% if chip == "nrf52832_xxAA" -%}
 usb_enable = false
 {% endif %}
-[matrix]
-# TODO: Update input/output gpio name
-# Input and output pins are mandatory
-{% if microcontroller_family == "nrf" -%}
-input_pins = ["P0_00", "P0_01", "P0_02", "P0_03"]
-output_pins = ["P0_05", "P0_06", "P0_07"]
-{% elsif microcontroller_family == "esp" -%}
-input_pins = ["gpio6", "gpio7", "gpio20", "gpio21"]
-output_pins = ["gpio3", "gpio4", "gpio5"]
-{% elsif microcontroller_family == "rp2040" -%}
-input_pins = ["PIN_6", "PIN_7", "PIN_8", "PIN_9"]
-output_pins = ["PIN_19", "PIN_20", "PIN_21"]
-{% elsif microcontroller_family == "stm32" -%}
-input_pins = ["PD4", "PD8", "PD6", "PD7"]
-output_pins = ["PD5", "PD9", "PD10"]
-{% endif -%}
 
-# WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
-# row2col = true
 
 [layout]
+# WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
+# row2col = true
 rows = 4
 cols = 3
 layers = 2
@@ -75,4 +59,46 @@ keymap = [
 {% if connection == "BLE" -%}
 [ble]
 enabled = true
+{% endif %}
+
+{% if keyboard_type == "split" -%}
+[split]
+{% if connection == "BLE" -%}
+connection = "ble"
+{% elsif connection == "USB" -%}
+connection = "serial"
+{% endif %}
+
+[split.central]
+rows = 2
+cols = 2
+row_offset = 0
+col_offset = 0
+{% if split_microcontroller == "nrf52840" -%}
+ble_addr = [0x18, 0xe2, 0x21, 0x80, 0xc0, 0xc7]
+input_pins = ["P0_12", "P0_13"]
+output_pins = ["P0_14", "P0_15"]
+{% elsif split_microcontroller == "rp2040" -%}
+serial = [
+    { instance = "UART0", tx_pin = "PIN_0", rx_pin = "PIN_1" },
+]
+input_pins = ["PIN_9", "PIN_11"]
+output_pins = ["PIN_10", "PIN_12"]
+{% endif %}
+
+[[split.peripheral]]
+rows = 2
+cols = 1
+row_offset = 2
+col_offset = 2
+{% if split_microcontroller == "nrf52840" -%}
+ble_addr = [0x7e, 0xfe, 0x73, 0x9e, 0x66, 0xe3]
+input_pins = ["P1_11", "P1_10"]
+output_pins = ["P0_30"]
+{% elsif split_microcontroller == "rp2040" -%}
+serial = [{ instance = "UART0", tx_pin = "PIN_0", rx_pin = "PIN_1" }]
+input_pins = ["PIN_9", "PIN_11"]
+output_pins = ["PIN_10"]
+{% endif %}
+
 {% endif %}

@@ -80,6 +80,7 @@ ignore = [
     'Cargo_esp.toml',
     'sdkconfig.defaults',
     'Makefile.toml',
+    'keyboard.toml',
     '.github',
     'gen_test_projects.sh',
 ]
@@ -92,6 +93,7 @@ ignore = [
     'Cargo_esp.toml',
     'sdkconfig.defaults',
     'Makefile.toml',
+    'keyboard.toml',
     '.github',
     'gen_test_projects.sh',
 ]
@@ -106,6 +108,7 @@ ignore = [
     'sdkconfig.defaults',
     's140_nrf52_7.3.0_softdevice.hex',
     'Makefile_split.toml',
+    'keyboard_split.toml',
     'gen_test_projects.sh',
     '.github',
 ]
@@ -121,6 +124,7 @@ ignore = [
     's140_nrf52_7.3.0_softdevice.hex',
     'sdkconfig.defaults',
     'Makefile_split.toml',
+    'keyboard_split.toml',
     'gen_test_projects.sh',
     '.github',
 ]
@@ -136,6 +140,7 @@ ignore = [
     's140_nrf52_7.3.0_softdevice.hex',
     'sdkconfig.defaults',
     'Makefile_split.toml',
+    'keyboard_split.toml',
     'gen_test_projects.sh',
     '.github',
 ]
@@ -151,6 +156,7 @@ ignore = [
     's140_nrf52_7.3.0_softdevice.hex',
     'memory.x',
     'Makefile_split.toml',
+    'keyboard_split.toml',
     'gen_test_projects.sh',
     '.github',
 ]
@@ -165,6 +171,7 @@ ignore = [
     'Cargo_esp.toml',
     'sdkconfig.defaults',
     'Makefile_split.toml',
+    'keyboard_split.toml',
     '.github',
     'gen_test_projects.sh',
 ]

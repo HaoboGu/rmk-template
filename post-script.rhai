@@ -2,6 +2,7 @@ if variable::get("keyboard_type") == "normal" {
     file::rename("src/main_config.rs", "src/main.rs");
 } else if variable::get("keyboard_type") == "split" {
     file::rename("Makefile_split.toml", "Makefile.toml");
+    file::rename("keyboard_split.toml", "keyboard.toml");
 }
 if variable::get("microcontroller_family") == "stm32" {
     file::rename("Cargo_stm32.toml", "Cargo.toml");
