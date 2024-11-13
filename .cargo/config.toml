@@ -1,8 +1,12 @@
 {% if chip == "esp32c3" -%}
+[build]
+target = "riscv32imc-esp-espidf"
 [target.riscv32imc-esp-espidf]
 linker = "ldproxy"
 rustflags = [ "--cfg",  "espidf_time64"] # Extending time_t for ESP IDF 5: https://github.com/esp-rs/rust/issues/110
 {% elsif chip == "esp32s3" -%}
+[build]
+target = "xtensa-esp32s3-espidf"
 [target.xtensa-esp32s3-espidf]
 linker = "ldproxy"
 rustflags = [ "--cfg",  "espidf_time64"] # Extending time_t for ESP IDF 5: https://github.com/esp-rs/rust/issues/110
