@@ -31,7 +31,7 @@ DEFMT_LOG = "info"
 {% if chip == "esp32c3" -%}
 MCU="esp32c3"
 # Note: this variable is not used by the pio builder (`cargo build --features pio`)
-ESP_IDF_VERSION = "v5.1.3"
+ESP_IDF_VERSION = "v5.2"
 ESP_IDF_PATH_ISSUES="warn"
 # For macOS
 CRATE_CC_NO_DEFAULTS="1"
@@ -41,7 +41,7 @@ build-std = ["std", "panic_abort"]
 {% elsif chip == "esp32s3" -%}
 MCU="esp32s3"
 # Note: this variable is not used by the pio builder (`cargo build --features pio`)
-ESP_IDF_VERSION = "v5.1.3"
+ESP_IDF_VERSION = "v5.2"
 ESP_IDF_PATH_ISSUES="warn"
 # For macOS
 CRATE_CC_NO_DEFAULTS="1"
