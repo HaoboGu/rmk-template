@@ -1,3 +1,7 @@
 {
     "rust-analyzer.check.allTargets": false,
+    "rust-analyzer.linkedProjects": [
+        "nrf52840/Cargo.toml",
+    ],
+    "rust-analyzer.showUnlinkedFileNotification": false,
 }

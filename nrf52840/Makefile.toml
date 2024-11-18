@@ -2,9 +2,7 @@
 install_crate = { rustup_component_name = "llvm-tools" }
 
 [tasks.flip-link]
-install_crate = { crate_name = "flip-link", binary = "flip-link", test_arg = [
-    "-h",
-] }
+install_crate = { crate_name = "flip-link", binary = "flip-link", test_arg = ["-h"] }
 
 [tasks.objcopy]
 install_crate = { crate_name = "cargo-binutils", binary = "cargo", test_arg = [
@@ -18,11 +16,11 @@ dependencies = ["install-llvm-tools", "flip-link"]
 [tasks.uf2]
 command = "python"
 args = [
-    "scripts/uf2conv.py",
+    "../../../scripts/uf2conv.py",
     "rmk.hex",
     "-c",
     "-f",
-    "xxxxxxxxxx",         # TODO: Use your chip family ID in the uf2conv.py file as -f argument
+    "0xADA52840",                  # Use your chip family ID in the uf2conv.py file as -f argument
     "-o",
     "rmk.uf2",
 ]

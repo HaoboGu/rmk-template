@@ -12,27 +12,16 @@
 
 use const_gen::*;
 use std::fs::File;
-{% if microcontroller_family == "esp" -%}
-use std::io::Read;
-use std::path::Path;
-{% else -%}
 use std::io::{Read, Write};
 use std::path::{Path, PathBuf};
-{% endif -%}
 use std::{env, fs};
 use xz2::read::XzEncoder;
 
 fn main() {
     // Generate vial config at the root of project
+    println!("cargo:rerun-if-changed=vial.json");
     generate_vial_config();
 
-    println!("cargo:rerun-if-changed=keyboard.toml");
-    println!("cargo:rerun-if-changed=vial.json");
-
-    {% if microcontroller_family == "esp" -%}
-    // ESP IDE system env
-    embuild::espidf::sysenv::output();  
-    {% else -%}
     // Put `memory.x` in our output directory and ensure it's
     // on the linker search path.
     let out = &PathBuf::from(env::var_os("OUT_DIR").unwrap());
@@ -48,6 +37,8 @@ fn main() {
     // `memory.x` is changed.
     println!("cargo:rerun-if-changed=memory.x");
 
+    println!("cargo:rerun-if-changed=keyboard.toml");
+
     // Specify linker arguments.
 
     // `--nmagic` is required if memory section addresses are not aligned to 0x10000,
@@ -58,14 +49,12 @@ fn main() {
     // Set the linker script to the one provided by cortex-m-rt.
     println!("cargo:rustc-link-arg=-Tlink.x");
 
-    // Use flip-link overflow protection: https://github.com/knurling-rs/flip-link
-    println!("cargo:rustc-linker=flip-link");
-
-    {% endif -%}
     // Set the extra linker script from defmt
     println!("cargo:rustc-link-arg=-Tdefmt.x");
-}
 
+    // Use flip-link overflow check: https://github.com/knurling-rs/flip-link
+    println!("cargo:rustc-linker=flip-link");
+}
 
 fn generate_vial_config() {
     // Generated vial config file
@@ -73,7 +62,7 @@ fn generate_vial_config() {
 
     let p = Path::new("vial.json");
     let mut content = String::new();
-    match File::open(&p) {
+    match File::open(p) {
         Ok(mut file) => {
             file.read_to_string(&mut content)
                 .expect("Cannot read vial.json");
@@ -88,10 +77,10 @@ fn generate_vial_config() {
         .unwrap();
 
     let keyboard_id: Vec<u8> = vec![0xB9, 0xBC, 0x09, 0xB2, 0x9D, 0x37, 0x4C, 0xEA];
-    let const_declarations = vec![
+    let const_declarations = [
         const_declaration!(pub VIAL_KEYBOARD_DEF = keyboard_def_compressed),
         const_declaration!(pub VIAL_KEYBOARD_ID = keyboard_id),
     ]
     .join("\n");
-    fs::write(&out_file, const_declarations).unwrap();
+    fs::write(out_file, const_declarations).unwrap();
 }
