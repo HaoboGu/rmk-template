@@ -6,3 +6,5 @@ target
 *.uf2
 
 .embuild
+
+.DS_Store

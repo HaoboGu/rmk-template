@@ -16,7 +16,7 @@ dependencies = ["install-llvm-tools", "flip-link"]
 [tasks.uf2]
 command = "python"
 args = [
-    "../../../scripts/uf2conv.py",
+    "scripts/uf2conv.py",
     "rmk.hex",
     "-c",
     "-f",
