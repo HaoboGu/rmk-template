@@ -33,7 +33,7 @@ The following are the detailed steps:
    ```shell
    cargo run --release
    ```
-4.(Optional) generate .uf2 firmware
+4. (Optional) generate .uf2 firmware
    ```shell
    cargo make uf2 --release
    ```
@@ -56,7 +56,7 @@ The following are the detailed steps:
    ```shell
    cargo run --release
    ```
-4.(Optional) generate .uf2 firmware
+4. (Optional) generate .uf2 firmware
    ```shell
    cargo make uf2 --release
    ```

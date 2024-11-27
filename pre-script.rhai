@@ -1,9 +1,11 @@
 let keyboard_type = variable::get("keyboard_type");
+variable::set("uf2_chip_family","xxxxxxxxxx");
 if keyboard_type == "normal" {
     let family = variable::get("microcontroller_family");
     if family == "rp2040" {
         variable::set("target", "thumbv6m-none-eabi");
         variable::set("chip", "rp2040");
+        variable::set("uf2_chip_family","RP2040");
     }
 
     let chip = variable::get("chip");
@@ -12,11 +14,14 @@ if keyboard_type == "normal" {
         variable::set("target", "thumbv7em-none-eabihf");
         variable::set("nrf_feature", chip);
         variable::set("chip", chip + "_xxAA");
+        variable::set("uf2_chip_family", chip);;
     }
     else if chip == "nrf52805" || chip == "nrf52810" || chip == "nrf52811" || chip == "nrf52820" {
         variable::set("target", "thumbv7em-none-eabi");
         variable::set("nrf_feature", chip);
         variable::set("chip", chip + "_xxAA");
+        let uf2_chip_family = chip[3..];
+        variable::set("uf2_chip_family", "NRF" + uf2_chip_family + "xxAA" );
     }
     else if chip == "esp32c3" {
         variable::set("target", "riscv32imc-esp-espidf");
@@ -32,10 +37,12 @@ if keyboard_type == "normal" {
         variable::set("target", "thumbv7em-none-eabihf");
         variable::set("nrf_feature", split_microcontroller);
         variable::set("chip", split_microcontroller + "_xxAA");
+        variable::set("uf2_chip_family","NRF52840");
     } else if split_microcontroller == "rp2040" {
         variable::set("target", "thumbv6m-none-eabi");
         variable::set("chip", "rp2040");
         variable::set("microcontroller_family", "rp2040");
         variable::set("connection", "USB");
+        variable::set("uf2_chip_family","RP2040");
     }
 }

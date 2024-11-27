@@ -49,7 +49,7 @@ args = [
     "{{project-name}}-central.hex",
     "-c",
     "-f",
-    "xxxxxxxxxx",         # TODO: Use your chip family ID in the uf2conv.py file as -f argument
+    "{{ uf2_chip_family }}",      
     "-o",
     "{{project-name}}-central.uf2",
 ]
@@ -62,7 +62,7 @@ args = [
     "{{project-name}}-peripheral.hex",
     "-c",
     "-f",
-    "xxxxxxxxxx",         # TODO: Use your chip family ID in the uf2conv.py file as -f argument
+    "{{ uf2_chip_family }}",
     "-o",
     "{{project-name}}-peripheral.uf2",
 ]
