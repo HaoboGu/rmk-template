@@ -18,16 +18,19 @@ linker = "flip-link"
 runner = "probe-rs run --chip rp2040"
 # runner = "elf2uf2-rs -d" # Use elf2uf2-rs if you don't have a debug probe
 rustflags = []
+[build]
+# TODO: Pick a correct compilation target for your microcontroller
+target = "{{ target }}"
 {% elsif microcontroller_family == "esp" -%}
 runner = "espflash flash --monitor --log-format defmt"
 {% else -%}
 # TODO: use `probe-rs chip list` to get your chip name 
 runner = "probe-rs run --chip {{ chip }}"
 rustflags = []
-{% endif %}
 [build]
 # TODO: Pick a correct compilation target for your microcontroller
 target = "{{ target }}"
+{% endif %}
 
 [env]
 # TODO: set DEFMT_LOG to "error" to reduce the binary size
