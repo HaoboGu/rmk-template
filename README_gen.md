@@ -33,6 +33,10 @@ The following are the detailed steps:
    ```shell
    cargo run --release
    ```
+4.(Optional) generate .uf2 firmware
+   ```shell
+   cargo make uf2 --release
+   ```
 {% elsif chip == "nrf52832_xxAA" -%}
 ## For BLE only
 
@@ -51,6 +55,10 @@ The following are the detailed steps:
 3. Compile, flash and run the example
    ```shell
    cargo run --release
+   ```
+4.(Optional) generate .uf2 firmware
+   ```shell
+   cargo make uf2 --release
    ```
 {% elsif chip == "esp32c3" -%}
 ## For BLE only

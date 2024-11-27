@@ -20,7 +20,7 @@ args = [
     "--",
     "-O",
     "ihex",
-    "rmk-central.hex",
+    "{{project-name}}-central.hex",
 ]
 dependencies = ["install-llvm-tools", "flip-link"]
 
@@ -38,7 +38,7 @@ args = [
     "--",
     "-O",
     "ihex",
-    "rmk-peripheral.hex",
+    "{{project-name}}-peripheral.hex",
 ]
 dependencies = ["install-llvm-tools"]
 
@@ -46,12 +46,12 @@ dependencies = ["install-llvm-tools"]
 command = "python"
 args = [
     "scripts/uf2conv.py",
-    "rmk-central.hex",
+    "{{project-name}}-central.hex",
     "-c",
     "-f",
     "xxxxxxxxxx",         # TODO: Use your chip family ID in the uf2conv.py file as -f argument
     "-o",
-    "rmk-central.uf2",
+    "{{project-name}}-central.uf2",
 ]
 dependencies = ["objcopy-central"]
 
@@ -59,12 +59,12 @@ dependencies = ["objcopy-central"]
 command = "python"
 args = [
     "scripts/uf2conv.py",
-    "rmk-peripheral.hex",
+    "{{project-name}}-peripheral.hex",
     "-c",
     "-f",
     "xxxxxxxxxx",         # TODO: Use your chip family ID in the uf2conv.py file as -f argument
     "-o",
-    "rmk-peripheral.uf2",
+    "{{project-name}}-peripheral.uf2",
 ]
 dependencies = ["objcopy-peripheral"]
 

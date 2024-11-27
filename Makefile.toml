@@ -12,18 +12,18 @@ install_crate = { crate_name = "cargo-binutils", binary = "cargo", test_arg = [
     "--help",
 ] }
 command = "cargo"
-args = ["objcopy", "--release", "--", "-O", "ihex", "rmk.hex"]
+args = ["objcopy", "--release", "--", "-O", "ihex", "{{project-name}}.hex"]
 dependencies = ["install-llvm-tools", "flip-link"]
 
 [tasks.uf2]
 command = "python"
 args = [
     "scripts/uf2conv.py",
-    "rmk.hex",
+    "{{project-name}}.hex",
     "-c",
     "-f",
     "xxxxxxxxxx",         # TODO: Use your chip family ID in the uf2conv.py file as -f argument
     "-o",
-    "rmk.uf2",
+    "{{project-name}}.uf2",
 ]
 dependencies = ["objcopy"]
