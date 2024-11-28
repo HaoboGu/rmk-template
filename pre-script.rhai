@@ -14,14 +14,13 @@ if keyboard_type == "normal" {
         variable::set("target", "thumbv7em-none-eabihf");
         variable::set("nrf_feature", chip);
         variable::set("chip", chip + "_xxAA");
-        variable::set("uf2_chip_family", chip);;
+        variable::set("uf2_chip_family", chip);
     }
     else if chip == "nrf52805" || chip == "nrf52810" || chip == "nrf52811" || chip == "nrf52820" {
         variable::set("target", "thumbv7em-none-eabi");
         variable::set("nrf_feature", chip);
         variable::set("chip", chip + "_xxAA");
-        let uf2_chip_family = chip[3..];
-        variable::set("uf2_chip_family", "NRF" + uf2_chip_family + "xxAA" );
+        variable::set("uf2_chip_family", chip);
     }
     else if chip == "esp32c3" {
         variable::set("target", "riscv32imc-esp-espidf");
