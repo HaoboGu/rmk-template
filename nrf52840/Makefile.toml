@@ -10,7 +10,7 @@ install_crate = { crate_name = "cargo-binutils", binary = "cargo", test_arg = [
     "--help",
 ] }
 command = "cargo"
-args = ["objcopy", "--release", "--", "-O", "ihex", "rmk.hex"]
+args = ["objcopy", "--release", "--", "-O", "ihex", "{{ project_name }}.hex"]
 dependencies = ["install-llvm-tools", "flip-link"]
 
 [tasks.uf2]
