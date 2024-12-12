@@ -4,15 +4,15 @@ Template for initializing a [RMK](https://github.com/HaoboGu/rmk) keyboard firmw
 
 ## Usage
 
-1. Install `cargo generate` and `flip-link`
+1. Install `rmk-cli` and `flip-link`
 
     ```shell
-    cargo install cargo-generate flip-link
+    cargo install rmk-cli flip-link
     ```
 
 2. Create your project using the template
     ```shell
-    cargo generate --git https://github.com/HaoboGu/rmk-template
+    rmk-cli init
     ```
 
 3. Follow the steps in generated `README.md` to finish the initialization
