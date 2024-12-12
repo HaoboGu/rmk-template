@@ -30,6 +30,7 @@ xz2 = "0.1.7"
 json = "0.12"
 const-gen = "1.6"
 embuild = "0.32"
+cc = "=1.1.31"
 
 [[bin]]
 name = "{{ project_name }}"
