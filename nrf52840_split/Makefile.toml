@@ -43,7 +43,7 @@ dependencies = ["install-llvm-tools", "flip-link"]
 [tasks.uf2-central]
 command = "python"
 args = [
-    "../../../scripts/uf2conv.py",
+    "scripts/uf2conv.py",
     "{{ project_name }}-central.hex",
     "-c",
     "-f",
@@ -56,7 +56,7 @@ dependencies = ["objcopy-central"]
 [tasks.uf2-peripheral]
 command = "python"
 args = [
-    "../../../scripts/uf2conv.py",
+    "scripts/uf2conv.py",
     "{{ project_name }}-peripheral.hex",
     "-c",
     "-f",

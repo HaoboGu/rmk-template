@@ -20,7 +20,7 @@ args = [
     "{{ project_name }}.hex",
     "-c",
     "-f",
-    "0xADA52840",                  # Use your chip family ID in the uf2conv.py file as -f argument
+    "0x6db66082",                  # Use your chip family ID in the uf2conv.py file as -f argument
     "-o",
     "{{ project_name }}.uf2",
 ]
