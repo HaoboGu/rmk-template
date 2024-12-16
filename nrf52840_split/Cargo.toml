@@ -35,6 +35,9 @@ defmt = "0.3"
 defmt-rtt = "0.4"
 panic-probe = { version = "0.3", features = ["print-defmt"] }
 
+[patch.crates-io]
+nrf-softdevice = { version = "0.1.0", git = "https://github.com/embassy-rs/nrf-softdevice", rev = "d5f023b"}
+
 [build-dependencies]
 xz2 = "0.1.7"
 json = "0.12"
