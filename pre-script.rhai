@@ -1,5 +1,5 @@
 let keyboard_type = variable::get("keyboard_type");
-variable::set("rmk-version","0.4");
+variable::set("rmk-version","0.5");
 variable::set("uf2_chip_family","xxxxxxxxxx");
 if keyboard_type == "normal" {
     let family = variable::get("microcontroller_family");
