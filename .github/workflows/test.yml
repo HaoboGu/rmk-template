@@ -19,13 +19,14 @@ jobs:
       run: cargo binstall cargo-make rmk-cli -y
     - name: Install target
       working-directory: ..
-      run: rustup default stable && rustup target add thumbv7em-none-eabihf thumbv6m-none-eabi thumbv7em-none-eabi thumbv6m-none-eabi
+      run: rustup default stable && rustup target add thumbv6m-none-eabi
     - name: Create project
       run: rmkit init --project-name rp2040_test --chip rp2040 --split false --local-path rp2040
     - name: Build rp2040
       working-directory: ./rp2040_test
       run: cargo make uf2 --release
 
+      # run: rustup default stable && rustup target add thumbv7em-none-eabihf thumbv6m-none-eabi thumbv7em-none-eabi thumbv6m-none-eabi
     # - name: Build nrf52832_ble
     #   working-directory: ../nrf52832_ble
     #   run: cargo build --release
