@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: cargo-bins/cargo-binstall@main
+    - uses: actions/checkout@v3
     - name: Install rmkit and cargo-make
       run: cargo binstall cargo-make rmkit -y
     - name: Install target
@@ -22,15 +23,12 @@ jobs:
       run: rustup default stable && rustup target add thumbv6m-none-eabi
     - name: pwd
       run: pwd
-    - name: pwd rmk
-      working-directory: rmk-template
-      run: pwd
     - name: ls last
       run: ls ../rmk-template
     - name: ls last
       run: ls ../../rmk-template
     - name: Create project
-      run: rmkit init --project-name rp2040_test --chip rp2040 --split false --local-path ../rmk-template/rp2040
+      run: rmkit init --project-name rp2040_test --chip rp2040 --split false --local-path rp2040
     - name: Build rp2040
       working-directory: rp2040_test
       run: cargo make uf2 --release
