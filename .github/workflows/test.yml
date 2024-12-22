@@ -20,14 +20,14 @@ jobs:
     - name: Install target
       working-directory: ..
       run: rustup default stable && rustup target add thumbv6m-none-eabi
-    - name: ls
-      run: ls
+    - name: pwd
+      run: pwd
     - name: ls last
       run: ls ../
     - name: Create project
-      run: rmkit init --project-name rp2040_test --chip rp2040 --split false --local-path ../rp2040
+      run: rmkit init --project-name rp2040_test --chip rp2040 --split false --local-path ../rmk-template/rp2040
     - name: Build rp2040
-      working-directory: ../rp2040_test
+      working-directory: rp2040_test
       run: cargo make uf2 --release
 
       # run: rustup default stable && rustup target add thumbv7em-none-eabihf thumbv6m-none-eabi thumbv7em-none-eabi thumbv6m-none-eabi
