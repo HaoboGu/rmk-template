@@ -11,7 +11,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build_rp2040:
+  rp2040_template:
     runs-on: ubuntu-latest
     steps:
     - uses: cargo-bins/cargo-binstall@main
@@ -21,35 +21,87 @@ jobs:
     - name: Install target
       working-directory: ..
       run: rustup default stable && rustup target add thumbv6m-none-eabi
-    - name: pwd
-      run: pwd
-    - name: ls last
-      run: ls ../rmk-template
-    - name: ls last
-      run: ls ../../rmk-template
     - name: Create project
       run: rmkit init --project-name rp2040_test --chip rp2040 --split false --local-path rp2040
     - name: Build rp2040
       working-directory: rp2040_test
       run: cargo make uf2 --release
 
-      # run: rustup default stable && rustup target add thumbv7em-none-eabihf thumbv6m-none-eabi thumbv7em-none-eabi thumbv6m-none-eabi
-    # - name: Build nrf52832_ble
-    #   working-directory: ../nrf52832_ble
-    #   run: cargo build --release
-    # - name: Build nrf52840_ble
-    #   working-directory: ../nrf52840_ble
-    #   run: cargo build --release
-    # - name: Build nrf_usb
-    #   working-directory: ../nrf_usb
-    #   run: cargo build --release
-    # - name: Build stm32
-    #   working-directory: ../stm32h7
-    #   run: cargo build --release
-    # - name: Build rp2040 split
-    #   working-directory: ../rp_split
-    #   run: cargo build --release --bin central && cargo build --release --bin peripheral
-    # - name: Build nrf52840 split
-    #   working-directory: ../nrf52840_ble_split
-    #   run: cargo build --release --bin central && cargo build --release --bin peripheral
+  rp2040_split_template:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: cargo-bins/cargo-binstall@main
+    - uses: actions/checkout@v3
+    - name: Install rmkit and cargo-make
+      run: cargo binstall cargo-make rmkit -y
+    - name: Install target
+      working-directory: ..
+      run: rustup default stable && rustup target add thumbv6m-none-eabi
+    - name: Create project
+      run: rmkit init --project-name rp2040_split_test --chip rp2040 --split true --local-path rp2040_split
+    - name: Build rp2040 split
+      working-directory: rp2040_split_test
+      run: cargo make uf2 --release
 
+  nrf52840:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: cargo-bins/cargo-binstall@main
+    - uses: actions/checkout@v3
+    - name: Install rmkit and cargo-make
+      run: cargo binstall cargo-make rmkit -y
+    - name: Install target
+      working-directory: ..
+      run: rustup default stable && rustup target add thumbv7em-none-eabihf
+    - name: Create project
+      run: rmkit init --project-name nrf52840_test --chip nrf52840 --split false --local-path nrf52840
+    - name: Build nrf52840 
+      working-directory: nrf52840_test
+      run: cargo make uf2 --release
+
+  nrf52840_split:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: cargo-bins/cargo-binstall@main
+    - uses: actions/checkout@v3
+    - name: Install rmkit and cargo-make
+      run: cargo binstall cargo-make rmkit -y
+    - name: Install target
+      working-directory: ..
+      run: rustup default stable && rustup target add thumbv7em-none-eabihf
+    - name: Create project
+      run: rmkit init --project-name nrf52840_split_test --chip nrf52840 --split true --local-path nrf52840_split
+    - name: Build nrf52840 split
+      working-directory: nrf52840_split_test
+      run: cargo make uf2 --release 
+
+  stm32:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: cargo-bins/cargo-binstall@main
+    - uses: actions/checkout@v3
+    - name: Install rmkit and cargo-make
+      run: cargo binstall cargo-make rmkit -y
+    - name: Install target
+      working-directory: ..
+      run: rustup default stable && rustup target add thumbv7em-none-eabihf
+    - name: Create project
+      run: rmkit init --project-name stm32_test --chip stm32h7b0vb --split false --local-path stm32
+    - name: Build stm32h7b0vb 
+      working-directory: stm32_test
+      run: cargo build --release
+
+  esp32c3:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: cargo-bins/cargo-binstall@main
+      - uses: actions/checkout@v3
+      - name: Install ldproxy and espup
+        run: cargo binstall ldproxy espup rmkit -y
+      - name: Install esp toolchain
+        run: espup install
+      - name: Create project
+        run: rmkit init --project-name esp32c3_test --chip esp32c3 --split false --local-path esp32c3
+      - name: Build esp32c3
+        working-directory: esp32c3_test
+        run: cargo +esp build --release 
