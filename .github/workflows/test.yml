@@ -22,8 +22,13 @@ jobs:
       run: rustup default stable && rustup target add thumbv6m-none-eabi
     - name: pwd
       run: pwd
+    - name: pwd rmk
+      working-directory: rmk-template
+      run: pwd
     - name: ls last
-      run: ls ../
+      run: ls ../rmk-template
+    - name: ls last
+      run: ls ../../rmk-template
     - name: Create project
       run: rmkit init --project-name rp2040_test --chip rp2040 --split false --local-path ../rmk-template/rp2040
     - name: Build rp2040
