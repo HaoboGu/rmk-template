@@ -81,7 +81,7 @@ jobs:
     - uses: cargo-bins/cargo-binstall@main
     - uses: actions/checkout@v3
     - name: Install rmkit and cargo-make
-      run: cargo binstall cargo-make rmkit -y
+      run: cargo binstall cargo-make rmkit flip-link -y
     - name: Install target
       working-directory: ..
       run: rustup default stable && rustup target add thumbv7em-none-eabihf
