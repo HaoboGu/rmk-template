@@ -15,8 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: cargo-bins/cargo-binstall@main
-    - name: Install rmk-cli and cargo-make
-      run: cargo binstall cargo-make rmk-cli -y
+    - name: Install rmkit and cargo-make
+      run: cargo binstall cargo-make rmkit -y
     - name: Install target
       working-directory: ..
       run: rustup default stable && rustup target add thumbv6m-none-eabi
