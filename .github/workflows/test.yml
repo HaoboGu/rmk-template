@@ -24,6 +24,7 @@ jobs:
       run: rmkit init --project-name rp2040_test --chip rp2040 --split false --local-path rp2040
     - name: Build rp2040
       working-directory: ./rp2040_test
+      run: cargo make uf2 --release
 
     # - name: Build nrf52832_ble
     #   working-directory: ../nrf52832_ble
