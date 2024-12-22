@@ -43,30 +43,38 @@ args = [
 dependencies = ["install-llvm-tools"]
 
 [tasks.uf2-central]
-command = "python"
+install_crate = { crate_name = "cargo-hex-to-uf2", binary = "cargo", test_arg = [
+    "hex-to-uf2",
+    "--help",
+] }
+command = "cargo"
 args = [
-    "scripts/uf2conv.py",
+    "hex-to-uf2",
+    "--input-path",
     "{{project-name}}-central.hex",
-    "-c",
-    "-f",
-    "{{ uf2_chip_family }}",      
-    "-o",
+    "--output-path",
     "{{project-name}}-central.uf2",
+    "--family",
+    "{{ uf2_chip_family }}",
 ]
-dependencies = ["objcopy-central"]
+dependencies = ["objcopy-central", "install-hex-to-uf2"]
 
 [tasks.uf2-peripheral]
-command = "python"
+install_crate = { crate_name = "cargo-hex-to-uf2", binary = "cargo", test_arg = [
+    "hex-to-uf2",
+    "--help",
+] }
+command = "cargo"
 args = [
-    "scripts/uf2conv.py",
+    "hex-to-uf2",
+    "--input-path",
     "{{project-name}}-peripheral.hex",
-    "-c",
-    "-f",
-    "{{ uf2_chip_family }}",
-    "-o",
+    "--output-path",
     "{{project-name}}-peripheral.uf2",
+    "--family",
+    "{{ uf2_chip_family }}",
 ]
-dependencies = ["objcopy-peripheral"]
+dependencies = ["objcopy-peripheral", "install-hex-to-uf2"]
 
 [tasks.uf2]
 dependencies = ["uf2-central", "uf2-peripheral"]
