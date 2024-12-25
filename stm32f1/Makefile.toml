@@ -22,7 +22,7 @@ args = [
     "{{ project_name }}.hex",
     "-c",
     "-f",
-    "{{ chip_name }}",        # Use your chip family ID in the uf2conv.py file as -f argument
+    "stm32f1",        # Use your chip family ID in the uf2conv.py file as -f argument
     "-o",
     "{{ project_name }}.uf2",
 ]
