@@ -20,7 +20,7 @@ args = [
     "--",
     "-O",
     "ihex",
-    "{{ project_name }}_central.hex",
+    "{{ project_name }}-central.hex",
 ]
 dependencies = ["install-llvm-tools", "flip-link"]
 
@@ -34,7 +34,7 @@ args = [
     "--",
     "-O",
     "ihex",
-    "{{ project_name }}_peripheral.hex",
+    "{{ project_name }}-peripheral.hex",
 ]
 dependencies = ["install-llvm-tools", "flip-link"]
 
@@ -47,9 +47,9 @@ command = "cargo"
 args = [
     "hex-to-uf2",
     "--input-path",
-    "{{ project_name }}_central.hex",
+    "{{ project_name }}-central.hex",
     "--output-path",
-    "{{ project_name }}_central.uf2",
+    "{{ project_name }}-central.uf2",
     "--family",
     "rp2040",
 ]
@@ -64,9 +64,9 @@ command = "cargo"
 args = [
     "hex-to-uf2",
     "--input-path",
-    "{{ project_name }}_peripheral.hex",
+    "{{ project_name }}-peripheral.hex",
     "--output-path",
-    "{{ project_name }}_peripheral.uf2",
+    "{{ project_name }}-peripheral.uf2",
     "--family",
     "rp2040",
 ]
