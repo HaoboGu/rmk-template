@@ -1,11 +1,14 @@
-# esp32c6 BLE example
+# RMK 
 
-To run this example, you should have latest Rust in **esp** channel and `esp-idf` toolchain installed. The full instruction of installing `esp-idf` toolchain can be found [here](https://docs.esp-rs.org/book/installation/index.html) and [here](https://docs.esp-rs.org/std-training/02_2_software.html)
+RMK is a feature-rich and easy-to-use keyboard firmware.
 
-To run the example, make sure that you have esp-idf environment, `ldproxy` and `espflash` installed correctly. Then, run 
+## Use the template
+
+First, you should have latest Rust in **esp** channel and `esp-idf` toolchain installed. The full instruction of installing `esp-idf` toolchain can be found [here](https://docs.esp-rs.org/book/installation/index.html) and [here](https://docs.esp-rs.org/std-training/02_2_software.html)
+
+Besides esp-idf environment, `ldproxy` and `espflash` are also required. You can use `cargo install ldproxy espflash` to install them. Then, run the firmware using the following command:
 
 ```
-cd examples/use_config/esp32c6_ble
 cargo run --release
 ```
 
