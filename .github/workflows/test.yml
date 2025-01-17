@@ -28,7 +28,7 @@ jobs:
       - name: Install target
         run: rustup default stable && rustup target add thumbv6m-none-eabi thumbv7em-none-eabihf thumbv7m-none-eabi
       - name: Create project
-        run: rmkit init --project-name ${{ matrix.template_name }}_test --chip ${{ matrix.template_name }}_test --split false --local-path ${{ matrix.template_name }}
+        run: rmkit init --project-name ${{ matrix.template_name }}_test --chip ${{ matrix.template_name }} --split false --local-path ${{ matrix.template_name }}
       - name: Build template
         working-directory: ${{ matrix.template_name }}_test
         run: cargo make uf2 --release
@@ -50,7 +50,7 @@ jobs:
       - name: Install target
         run: rustup default stable && rustup target add thumbv6m-none-eabi thumbv7em-none-eabihf thumbv7m-none-eabi
       - name: Create project
-        run: rmkit init --project-name ${{ matrix.template_name }}_split_test --chip ${{ matrix.template_name }}_test --split true --local-path ${{ matrix.template_name }}_split
+        run: rmkit init --project-name ${{ matrix.template_name }}_split_test --chip ${{ matrix.template_name }} --split true --local-path ${{ matrix.template_name }}_split
       - name: Build template
         working-directory: ${{ matrix.template_name }}_split_test
         run: cargo make uf2 --release
