@@ -4,15 +4,15 @@ Template for initializing a [RMK](https://github.com/HaoboGu/rmk) keyboard firmw
 
 ## Usage
 
-1. Install `rmk-cli` and `flip-link`
+1. Install `rmkit` and `flip-link`
 
     ```shell
-    cargo install rmk-cli flip-link
+    cargo install rmkit flip-link
     ```
 
 2. Create your project using the template
     ```shell
-    rmk-cli init
+    rmkit init
     ```
 
 3. Follow the steps in generated `README.md` to finish the initialization
