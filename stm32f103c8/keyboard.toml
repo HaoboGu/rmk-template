@@ -8,8 +8,8 @@ chip = "{{ chip_name }}"
 
 [matrix]
 # Input and output pins are mandatory
-input_pins = ["PD9", "PD8", "PB13", "PB12"]
-output_pins = ["PE13", "PE14", "PE15"]
+input_pins = ["PA9", "PA8", "PA7", "PA6"]
+output_pins = ["PA10", "PA14", "PA15"]
 # WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
 # row2col = true
 
