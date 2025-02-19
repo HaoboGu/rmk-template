@@ -1,6 +1,6 @@
 # rmk-template
 
-Template for initializing a [RMK](https://github.com/HaoboGu/rmk) keyboard firmware project.
+Collections of project templates for initializing a [RMK](https://github.com/HaoboGu/rmk) keyboard firmware project.
 
 ## Usage
 
