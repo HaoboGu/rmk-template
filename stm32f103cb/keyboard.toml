@@ -16,7 +16,7 @@ output_pins = ["PA10", "PA14", "PA15"]
 [layout]
 rows = 4
 cols = 3
-layers = 1
+layers = 2
 keymap = [
     [
         ["A", "B", "C"],
