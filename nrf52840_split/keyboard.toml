@@ -27,13 +27,11 @@ keymap = [
     ],
 ]
 
-[storage]
-
 [ble]
 enabled = true
 
 [behavior]
-enable_hrm = true
+tap_hold = { enable_hrm = true }
 
 [split]
 connection = "ble"
