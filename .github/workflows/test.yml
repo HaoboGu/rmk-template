@@ -18,7 +18,7 @@ jobs:
         template_name:
           - rp2040
           - nrf52840
-          - stm32f103c8
+          - stm32f103cb
           - stm32h7b0vb
     steps:
       - uses: cargo-bins/cargo-binstall@main

@@ -34,10 +34,10 @@ keymap = [
 
 [light]
 # All light pins are high-active by default, uncomment if you want it to be low-active
-capslock.pin = "PA4"
-capslock.low_active = false
-scrolllock.pin = "PA3"
-scrolllock.low_active = false
+# capslock.pin = "PA4"
+# capslock.low_active = false
+# scrolllock.pin = "PA3"
+# scrolllock.low_active = false
 # Just ignore if no light pin is used for it
 # numslock.pin = "PA5"
 # numslock.low_active = true
@@ -47,12 +47,6 @@ scrolllock.low_active = false
 [storage]
 # Storage feature is enabled by default
 # enabled = false
-
-[ble]
-enabled = true
-battery_pin = "PA0"
-charge_state.pin = "PA0"
-charge_state.low_active = true
 
 [dependency]
 defmt_log = false
