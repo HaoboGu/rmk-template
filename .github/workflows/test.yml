@@ -18,6 +18,7 @@ jobs:
         template_name:
           - rp2040
           - nrf52840
+          - nrf52832
           - stm32f103cb
           - stm32h7b0vb
     steps:
