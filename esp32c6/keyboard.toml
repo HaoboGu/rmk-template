@@ -3,7 +3,7 @@ name = "{{ project_name }}"
 product_name = "{{ project_name }}"
 vendor_id = 0x4c4b
 product_id = 0x4643
-manufacturer = "haobo"
+manufacturer = "RMK"
 chip = "esp32c6"
 usb_enable = false
 
@@ -33,20 +33,6 @@ keymap = [
         ["_", "_", "_"]
     ],
 ]
-
-[light]
-# All light pins are high-active by default, uncomment if you want it to be low-active
-# capslock.pin = "PB2"
-# capslock.low_active = true
-# scrolllock.pin = "PA3"
-# scrolllock.low_active = true
-# Just ignore if no light pin is used for it
-# numslock.pin = "PA5"
-# numslock.low_active = true
-
-[storage]
-# Storage feature is enabled by default
-# enabled = false
 
 [ble]
 enabled = true
