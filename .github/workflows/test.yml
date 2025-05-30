@@ -68,6 +68,9 @@ jobs:
         template_name:
           - esp32s3
     steps:
+      - uses: esp-rs/xtensa-toolchain@v1.5
+        with:
+          ldproxy: false
       - uses: cargo-bins/cargo-binstall@main
       - uses: actions/checkout@v3
       - name: Install ldproxy and espup
