@@ -62,7 +62,7 @@ jobs:
         run: cargo make uf2 --release
 
   build_esp_templates:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         template_name:

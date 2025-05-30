@@ -9,6 +9,11 @@ rustflags = [
   "-C", "force-frame-pointers",
 ]
 
+# Xtensa only:
+# Needed for nightly, until llvm upstream has support for Rust Xtensa.
+[unstable]
+build-std = ["alloc", "core"]
+
 [env]
 ESP_LOG = "info"
 KEYBOARD_TOML_PATH =  { value = "keyboard.toml", relative = true }
