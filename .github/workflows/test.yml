@@ -21,13 +21,15 @@ jobs:
           - nrf52832
           - stm32f103cb
           - stm32h7b0vb
+          - esp32c3
+          - esp32c6
     steps:
       - uses: cargo-bins/cargo-binstall@main
       - uses: actions/checkout@v3
       - name: Install rmkit and cargo-make
         run: cargo binstall cargo-make rmkit flip-link -y
       - name: Install target
-        run: rustup default stable && rustup target add thumbv6m-none-eabi thumbv7em-none-eabihf thumbv7m-none-eabi
+        run: rustup default stable && rustup target add thumbv6m-none-eabi thumbv7em-none-eabihf thumbv7m-none-eabi riscv32imac-unknown-none-elf riscv32imc-unknown-none-elf
       - name: Create project
         run: rmkit init --project-name ${{ matrix.template_name }}_test --chip ${{ matrix.template_name }} --split false --local-path ${{ matrix.template_name }}
       - name: Build template
@@ -60,14 +62,15 @@ jobs:
         run: cargo make uf2 --release
 
   build_esp_templates:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         template_name:
-          - esp32c3
-          - esp32c6
           - esp32s3
     steps:
+      - uses: esp-rs/xtensa-toolchain@v1.5
+        with:
+          ldproxy: false
       - uses: cargo-bins/cargo-binstall@main
       - uses: actions/checkout@v3
       - name: Install ldproxy and espup
@@ -78,4 +81,4 @@ jobs:
         run: rmkit init --project-name ${{ matrix.template_name }}_test --chip ${{ matrix.template_name }} --split false --local-path ${{ matrix.template_name }}
       - name: Build template
         working-directory: ${{ matrix.template_name }}_test
-        run: cargo +esp build --release
+        run: . /home/runner/export-esp.sh && cargo +esp build --release 

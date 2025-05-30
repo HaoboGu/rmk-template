@@ -3,7 +3,7 @@ name = "{{ project_name }}"
 product_name = "{{ project_name }}"
 vendor_id = 0x4c4b
 product_id = 0x4643
-manufacturer = "rmk"
+manufacturer = "RMK"
 chip = "{{ chip_name }}"
 
 [matrix]
@@ -41,9 +41,3 @@ scrolllock.low_active = false
 # Just ignore if no light pin is used for it
 # numslock.pin = "PA5"
 # numslock.low_active = true
-
-
-
-[storage]
-# Storage feature is enabled by default
-# enabled = false

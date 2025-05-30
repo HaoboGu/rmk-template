@@ -28,6 +28,6 @@ args = [
     "--output-path",
     "{{ project_name }}.uf2",
     "--family",
-    "{{ uf2_key }}", # Use your chip family ID in the 
+    "stm32h7",
 ]
 dependencies = ["objcopy"]

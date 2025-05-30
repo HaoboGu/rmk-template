@@ -4,9 +4,15 @@ RMK is a feature-rich and easy-to-use keyboard firmware.
 
 ## Use the template
 
-First, you should have latest Rust in **esp** channel and `esp-idf` toolchain installed. The full instruction of installing `esp-idf` toolchain can be found [here](https://docs.esp-rs.org/book/installation/index.html) and [here](https://docs.esp-rs.org/std-training/02_2_software.html)
+To run this firmware, you should have latest Rust installed. The full instruction of installing esp Rust toolchain can be found [here](https://docs.esp-rs.org/book/installation/index.html).
 
-Besides esp-idf environment, `ldproxy` and `espflash` are also required. You can use `cargo install ldproxy espflash` to install them. Then, run the firmware using the following command:
+[`espflash`](https://github.com/esp-rs/espflash) should also be installed:
+
+```
+cargo install cargo-espflash espflash
+```
+
+After having everything installed, use the following command to run the example:
 
 ```
 cargo run --release
@@ -19,20 +25,36 @@ cargo run --release
     Compiling ...
     ...
     ...
-    Finished `release` profile [optimized + debuginfo] target(s) in 51.39s
-     Running `espflash flash --monitor --log-format defmt target/riscv32imac-esp-espidf/release/rmk-esp32c6`
-[2024-08-29T12:14:05Z INFO ] Serial port: 'COM6'
-[2024-08-29T12:14:05Z INFO ] Connecting...
-[2024-08-29T12:14:05Z INFO ] Using flash stub
-Chip type:         esp32c6 (revision v0.0)
+    Finished `release` profile [optimized + debuginfo] target(s) in 11.70s
+     Running `espflash flash --monitor --port /dev/cu.usbmodem211401 target/riscv32imac-unknown-none-elf/release/rmk-esp32c6`
+[2025-04-10T10:01:23Z INFO ] Serial port: '/dev/cu.usbmodem211401'
+[2025-04-10T10:01:23Z INFO ] Connecting...
+[2025-04-10T10:01:23Z INFO ] Using flash stub
+Chip type:         esp32c6 (revision v0.1)
 Crystal frequency: 40 MHz
 Flash size:        4MB
 Features:          WiFi 6, BT 5
-MAC address:       aa:aa:aa:aa:aa:aa
-App/part. size:    892,624/4,128,768 bytes, 21.62%
-[2024-08-29T12:14:06Z INFO ] Segment at address '0x0' has not changed, skipping write
-[2024-08-29T12:14:06Z INFO ] Segment at address '0x8000' has not changed, skipping write
-[00:00:05] [========================================]     483/483     0x10000  [2024-08-29T12:14:12Z INFO ] Flashing has completed!
+MAC address:       40:4c:ca:5b:c7:dc
+App/part. size:    768,944/4,128,768 bytes, 18.62%
+[2025-04-10T10:01:23Z INFO ] Segment at address '0x0' has not changed, skipping write
+[2025-04-10T10:01:23Z INFO ] Segment at address '0x8000' has not changed, skipping write
+[00:00:06] [========================================]     411/411     0x10000                                                                                             [2025-04-10T10:01:31Z INFO ] Flashing has completed!
+```
+
+If espflash reports the following error:
+
+```
+Error: espflash::connection_failed
+
+  × Error while connecting to device
+  ╰─▶ Serial port not found
+```
+
+You should to identify which serial port are connected to your esp board, and use `--port` to specify the used serial port:
+
+```
+# Suppose that the esp board are connected to /dev/cu.usbmodem211401
+cargo run --release -- --port /dev/cu.usbmodem211401
 ```
 
 If you want to get some insight of segments of your binary, [`espsegs`](https://github.com/bjoernQ/espsegs) would help:
@@ -42,5 +64,5 @@ If you want to get some insight of segments of your binary, [`espsegs`](https://
 cargo install --git https://github.com/bjoernQ/espsegs
 
 # Check all segments
-espsegs target/riscv32imac-esp-espidf/release/rmk-esp32c6 --chip esp32c6
+espsegs target/riscv32imac-unknown-none-elf/release/rmk-esp32c6 --chip esp32c6
 ```
