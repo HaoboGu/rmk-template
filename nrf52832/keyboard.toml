@@ -9,8 +9,8 @@ usb_enable = false
 
 [matrix]
 # Input and output pins are mandatory
-input_pins = ["P0_12", "P0_11", "P0_10", "P0_09"]
-output_pins = ["P0_08", "P0_07", "P0_06"]
+input_pins = ["P0_03", "P0_04", "P0_28", "P0_29"]
+output_pins = ["P0_11", "P0_27", "P0_07"]
 # WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
 # row2col = true
 
