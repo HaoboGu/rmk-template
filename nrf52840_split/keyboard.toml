@@ -3,7 +3,7 @@ name = "{{ project_name }}"
 product_name = "{{ project_name }}"
 vendor_id = 0x4c4b
 product_id = 0x4643
-manufacturer = "rmk"
+manufacturer = "RMK"
 chip = "nrf52840"
 
 [layout]

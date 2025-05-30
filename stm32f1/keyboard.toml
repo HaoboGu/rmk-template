@@ -42,10 +42,5 @@ scrolllock.low_active = false
 # numslock.pin = "PA5"
 # numslock.low_active = true
 
-
-[storage]
-# Storage feature is enabled by default
-# enabled = false
-
 [dependency]
 defmt_log = false
