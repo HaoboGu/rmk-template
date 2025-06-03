@@ -26,6 +26,7 @@ embassy-executor = { version = "0.7", features = [
 ] }
 static_cell = "2"
 defmt = "1.0"
+defmt-rtt = "1.0"
 panic-probe = { version = "1.0" }
 
 [build-dependencies]
