@@ -3,15 +3,16 @@ name = "{{ project_name }}"
 product_name = "{{ project_name }}"
 vendor_id = 0x4c4b
 product_id = 0x4643
-manufacturer = "rmk"
+manufacturer = "RMK"
 chip = "nrf52832"
 usb_enable = false
 
 [matrix]
 # Input and output pins are mandatory
-input_pins = ["P0_12", "P0_11", "P0_10", "P0_09"]
-output_pins = ["P0_08", "P0_07", "P0_06"]
-# WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
+input_pins = ["P0_03", "P0_04", "P0_28", "P0_29"]
+output_pins = ["P0_11", "P0_27", "P0_07"]
+# WARNING: Currently row2col/col2row is set in RMK's feature gate, row2col config here is valid ONLY when you're using cloud compilation.
+# Checkout doc here: https://rmk.rs/docs/user_guide/faq.html#my-matrix-is-row2col-the-matrix-doesn-t-work
 # row2col = true
 
 [layout]
@@ -33,29 +34,5 @@ keymap = [
     ],
 ]
 
-[light]
-# All light pins are high-active by default, uncomment if you want it to be low-active
-# capslock.pin = "P0_30"
-# capslock.low_active = false
-# scrolllock.pin = "PA3"
-# scrolllock.low_active = true
-# Just ignore if no light pin is used for it
-# numslock.pin = "PA5"
-# numslock.low_active = true
-
-[storage]
-# Storage feature is enabled by default
-# enabled = false
-
 [ble]
 enabled = true
-# vddh has an internal voltage divider
-# battery_adc_pin = "vddh"
-# Or
-# battery_adc_pin = "P0_04"
-# adc_divider_measured = 2000
-# adc_divider_total = 2806
-# charge_state.pin = "P0_25"
-# charge_state.low_active = false
-# charge_led.pin = "P0_29"
-# charge_led.low_active = false

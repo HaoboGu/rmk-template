@@ -3,14 +3,15 @@ name = "{{ project_name }}"
 product_name = "{{ project_name }}"
 vendor_id = 0x4c4b
 product_id = 0x4643
-manufacturer = "rmk"
+manufacturer = "RMK"
 chip = "rp2040"
 
 [matrix]
 # Input and output pins are mandatory
 input_pins = ["PIN_6", "PIN_7", "PIN_8", "PIN_9"]
 output_pins = ["PIN_19", "PIN_20", "PIN_21"]
-# WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
+# WARNING: Currently row2col/col2row is set in RMK's feature gate, row2col config here is valid ONLY when you're using cloud compilation.
+# Checkout doc here: https://rmk.rs/docs/user_guide/faq.html#my-matrix-is-row2col-the-matrix-doesn-t-work
 # row2col = true
 
 [layout]
@@ -31,18 +32,3 @@ keymap = [
         ["_", "_", "_"]
     ],
 ]
-
-[light]
-# All light pins are high-active by default, uncomment if you want it to be low-active
-# capslock.pin = "PB2"
-# capslock.low_active = true
-# scrolllock.pin = "PA3"
-# scrolllock.low_active = true
-# Just ignore if no light pin is used for it
-# numslock.pin = "PA5"
-# numslock.low_active = true
-
-
-[storage]
-# Storage feature is enabled by default
-# enabled = false

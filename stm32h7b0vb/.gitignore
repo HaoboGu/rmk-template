@@ -5,6 +5,4 @@ target
 *.hex
 *.uf2
 
-.embuild
-
 .DS_Store

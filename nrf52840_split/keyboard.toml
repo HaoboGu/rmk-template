@@ -3,11 +3,12 @@ name = "{{ project_name }}"
 product_name = "{{ project_name }}"
 vendor_id = 0x4c4b
 product_id = 0x4643
-manufacturer = "rmk"
+manufacturer = "RMK"
 chip = "nrf52840"
 
 [layout]
-# WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
+# WARNING: Currently row2col/col2row is set in RMK's feature gate, row2col config here is valid ONLY when you're using cloud compilation.
+# Checkout doc here: https://rmk.rs/docs/user_guide/faq.html#my-matrix-is-row2col-the-matrix-doesn-t-work
 # row2col = true
 rows = 4
 cols = 3
@@ -41,7 +42,6 @@ rows = 2
 cols = 2
 row_offset = 0
 col_offset = 0
-ble_addr = [0x18, 0xe2, 0x21, 0x80, 0xc0, 0xc7]
 [split.central.matrix]
 input_pins = ["P1_04", "P1_06"]
 output_pins = ["P0_02", "P1_15"]
@@ -51,7 +51,7 @@ rows = 2
 cols = 1
 row_offset = 2
 col_offset = 2
-ble_addr = [0x7e, 0xfe, 0x73, 0x9e, 0x66, 0xe3]
+
 [split.peripheral.matrix]
 input_pins = ["P1_04", "P1_06"]
 output_pins = ["P0_02"]
