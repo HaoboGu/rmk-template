@@ -12,7 +12,8 @@ usb_enable = false
 input_pins = ["GPIO6", "GPIO7", "GPIO20", "GPIO21"]
 output_pins = ["GPIO3", "GPIO4", "GPIO5"]
 
-# WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
+# WARNING: Currently row2col/col2row is set in RMK's feature gate, row2col config here is valid ONLY when you're using cloud compilation.
+# Checkout doc here: https://rmk.rs/docs/user_guide/faq.html#my-matrix-is-row2col-the-matrix-doesn-t-work
 # row2col = true
 
 [layout]

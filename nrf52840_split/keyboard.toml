@@ -7,7 +7,8 @@ manufacturer = "RMK"
 chip = "nrf52840"
 
 [layout]
-# WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
+# WARNING: Currently row2col/col2row is set in RMK's feature gate, row2col config here is valid ONLY when you're using cloud compilation.
+# Checkout doc here: https://rmk.rs/docs/user_guide/faq.html#my-matrix-is-row2col-the-matrix-doesn-t-work
 # row2col = true
 rows = 4
 cols = 3

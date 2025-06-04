@@ -10,7 +10,8 @@ chip = "{{ chip_name }}"
 # Input and output pins are mandatory
 input_pins = ["PA9", "PA8", "PA7", "PA6"]
 output_pins = ["PA10", "PA14", "PA15"]
-# WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
+# WARNING: Currently row2col/col2row is set in RMK's feature gate, row2col config here is valid ONLY when you're using cloud compilation.
+# Checkout doc here: https://rmk.rs/docs/user_guide/faq.html#my-matrix-is-row2col-the-matrix-doesn-t-work
 # row2col = true
 
 [layout]
