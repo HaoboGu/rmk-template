@@ -10,7 +10,7 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { version = "0.7.0", features = ["rp2040_bl"] }
+rmk = { version = "0.7", features = ["rp2040_bl"] }
 embassy-time = { version = "0.4", features = ["defmt"] }
 embassy-rp = { version = "0.4", features = [
     "rp2040",
