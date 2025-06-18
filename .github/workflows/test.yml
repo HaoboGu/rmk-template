@@ -2,9 +2,9 @@ name: Test rmk-template
 
 on:
   push:
-    branches: ["master", "feat/rework"]
+    branches: ["main"]
   pull_request:
-    branches: ["master", "feat/rework"]
+    branches: ["main"]
   workflow_dispatch:
 
 env:
