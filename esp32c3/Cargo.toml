@@ -23,7 +23,7 @@ esp-backtrace = { version = "0.16", features = [
     "panic-handler",
     "println",
 ] }
-esp-storage = { version = "0.5.0", features = ["esp32c3", "nor-flash"] }
+esp-storage = { version = "0.5.0", features = ["esp32c3"] }
 esp-hal = { version = "1.0.0-beta.1", features = ["esp32c3", "unstable"] }
 esp-hal-embassy = { version = "0.8.1", features = ["esp32c3"] }
 esp-alloc = { version = "0.8.0" }
