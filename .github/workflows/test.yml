@@ -34,10 +34,11 @@ jobs:
         run: rmkit init --project-name ${{ matrix.template_name }}_test --chip ${{ matrix.template_name }} --split false --local-path ${{ matrix.template_name }}
       - name: Build template
         working-directory: ${{ matrix.template_name }}_test
-        run: cargo build --release
+        run: cargo update && cargo build --release
       - name: Build uf2
         working-directory: ${{ matrix.template_name }}_test
         run: cargo make uf2 --release
+
   build_split_templates:
     runs-on: ubuntu-latest
     strategy:
@@ -56,7 +57,7 @@ jobs:
         run: rmkit init --project-name ${{ matrix.template_name }}_split_test --chip ${{ matrix.template_name }} --split true --local-path ${{ matrix.template_name }}_split
       - name: Build template
         working-directory: ${{ matrix.template_name }}_split_test
-        run: cargo build --release
+        run: cargo update && cargo build --release
       - name: Build uf2
         working-directory: ${{ matrix.template_name }}_split_test
         run: cargo make uf2 --release
@@ -81,4 +82,4 @@ jobs:
         run: rmkit init --project-name ${{ matrix.template_name }}_test --chip ${{ matrix.template_name }} --split false --local-path ${{ matrix.template_name }}
       - name: Build template
         working-directory: ${{ matrix.template_name }}_test
-        run: . /home/runner/export-esp.sh && cargo +esp build --release 
+        run: . /home/runner/export-esp.sh && cargo update && cargo +esp build --release 
