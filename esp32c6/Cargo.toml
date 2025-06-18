@@ -13,7 +13,7 @@ license = "MIT OR Apache-2.0"
 rmk = { version = "0.7", default-features = false, features = [
     "col2row",
     "esp32c6_ble",
-    "log",
+   "log-04",
     "storage",
 ] }
 embassy-executor = { version = "0.7.0" }
@@ -27,7 +27,7 @@ esp-storage = { version = "0.6.0", features = ["esp32c6", "nor-flash"] }
 esp-hal = { version = "1.0.0-beta.1", features = ["esp32c6", "unstable"] }
 esp-hal-embassy = { version = "0.8.1", features = ["esp32c6"] }
 esp-alloc = { version = "0.8.0" }
-esp-println = { version = "0.14.0", features = ["esp32c6", "log"] }
+esp-println = { version = "0.14.0", features = ["esp32c6","log-04"] }
 esp-wifi = { version = "0.14.0", features = ["esp32c6", "ble"] }
 bt-hci = { version = "0.3" }
 rand_core = { version = "0.6", default-features = false }
