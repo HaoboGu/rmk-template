@@ -4,6 +4,11 @@ install_crate = { rustup_component_name = "llvm-tools" }
 [tasks.flip-link]
 install_crate = { crate_name = "flip-link", binary = "flip-link", test_arg = ["-h"] }
 
+[tasks.build]
+command = "cargo"
+args = ["build", "--release"]
+dependencies = ["install-llvm-tools", "flip-link"]
+
 [tasks.objcopy-central]
 install_crate = { crate_name = "cargo-binutils", binary = "cargo", test_arg = [
     "objcopy",
@@ -20,7 +25,7 @@ args = [
     "ihex",
     "{{ project_name }}-central.hex",
 ]
-dependencies = ["install-llvm-tools", "flip-link"]
+dependencies = ["build"]
 
 [tasks.objcopy-peripheral]
 install_crate = { crate_name = "cargo-binutils", binary = "cargo", test_arg = [
@@ -38,7 +43,7 @@ args = [
     "ihex",
     "{{ project_name }}-peripheral.hex",
 ]
-dependencies = ["install-llvm-tools", "flip-link"]
+dependencies = ["build"]
 
 [tasks.uf2-central]
 install_crate = { crate_name = "cargo-hex-to-uf2", binary = "cargo", test_arg = [

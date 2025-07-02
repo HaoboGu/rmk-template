@@ -6,6 +6,11 @@ install_crate = { crate_name = "flip-link", binary = "flip-link", test_arg = [
     "-h",
 ] }
 
+[tasks.build]
+command = "cargo"
+args = ["build", "--release"]
+dependencies = ["install-llvm-tools", "flip-link"]
+
 [tasks.objcopy]
 install_crate = { crate_name = "cargo-binutils", binary = "cargo", test_arg = [
     "objcopy",
@@ -13,7 +18,7 @@ install_crate = { crate_name = "cargo-binutils", binary = "cargo", test_arg = [
 ] }
 command = "cargo"
 args = ["objcopy", "--release", "--", "-O", "ihex", "{{ project_name }}.hex"]
-dependencies = ["install-llvm-tools", "flip-link"]
+dependencies = ["build"]
 
 [tasks.uf2]
 install_crate = { crate_name = "cargo-hex-to-uf2", binary = "cargo", test_arg = [
