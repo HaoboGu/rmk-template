@@ -21,6 +21,7 @@ use xz2::read::XzEncoder;
 fn main() {
     // Generate vial config at the root of project
     println!("cargo:rerun-if-changed=vial.json");
+    println!("cargo:rerun-if-changed=keyboard.toml");
     generate_vial_config();
 
     // Put `memory.x` in our output directory and ensure it's

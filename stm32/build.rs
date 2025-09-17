@@ -24,7 +24,6 @@ fn main() {
 
     generate_vial_config();
 
-    println!("cargo:rerun-if-changed=keyboard.toml");
 
     // Specify linker arguments.
 
