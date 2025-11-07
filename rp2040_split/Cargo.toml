@@ -10,15 +10,15 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { version = "0.7", features = ["split", "rp2040_bl", "rp2040_pio"] }
-embassy-time = { version = "0.4", features = ["defmt"] }
-embassy-rp = { version = "0.4", features = [
+rmk = { git = "https://github.com/HaoboGu/rmk", features = ["split", "rp2040"] }
+embassy-time = { version = "0.5", features = ["defmt"] }
+embassy-rp = { version = "0.8", features = [
     "rp2040",
     "defmt",
     "time-driver",
     "critical-section-impl",
 ] }
-embassy-executor = { version = "0.7", features = [
+embassy-executor = { version = "0.9", features = [
     "defmt",
     "arch-cortex-m",
     "executor-thread",
@@ -30,17 +30,6 @@ defmt = "1.0"
 defmt-rtt = "1.0"
 panic-probe = { version = "1.0", features = ["print-defmt"] }
 static_cell = "2"
-
-[patch.crates-io]
-embassy-sync = { git = "https://github.com/embassy-rs/embassy.git", rev = "f35aa4005a63e8d478b2b95aaa2bfb316b72dece" }
-embassy-futures = { git = "https://github.com/embassy-rs/embassy.git", rev = "f35aa4005a63e8d478b2b95aaa2bfb316b72dece" }
-embassy-executor = { git = "https://github.com/embassy-rs/embassy.git", rev = "f35aa4005a63e8d478b2b95aaa2bfb316b72dece" }
-sequential-storage = { git = "https://github.com/tweedegolf/sequential-storage", rev = "4e9abcec36c259cb2c30840649ff8f9a6b6fcafc" } # Tmp workaround for https://github.com/tweedegolf/sequential-storage/issues/81
-
-# [features]
-# avoid having to use --allow-multiple-definition linker flag
-# on macOS with Apple Silicon at least
-# default = ["rp-pico/disable-intrinsics"]
 
 [build-dependencies]
 xz2 = "0.1.7"

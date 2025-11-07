@@ -41,8 +41,8 @@ serial = [
 ]
 [split.central.matrix]
 matrix_type = "normal"
-input_pins = ["PIN_9", "PIN_11"]
-output_pins = ["PIN_10", "PIN_12"]
+row_pins = ["PIN_9", "PIN_11"]
+col_pins = ["PIN_10", "PIN_12"]
 
 [[split.peripheral]]
 rows = 2
@@ -52,8 +52,8 @@ col_offset = 2
 serial = [{ instance = "UART0", tx_pin = "PIN_0", rx_pin = "PIN_1" }]
 [split.peripheral.matrix]
 matrix_type = "normal"
-input_pins = ["PIN_9", "PIN_11"]
-output_pins = ["PIN_10"]
+row_pins = ["PIN_9", "PIN_11"]
+col_pins = ["PIN_10"]
 
 # [[split.peripheral]]
 # rows = 2
@@ -63,5 +63,8 @@ output_pins = ["PIN_10"]
 # serial = [{ instance = "UART0", tx_pin = "PIN_0", rx_pin = "PIN_1" }]
 # [split.peripheral.matrix]
 # matrix_type = "normal"
-# input_pins = ["PIN_9", "PIN_11"]
-# output_pins = ["PIN_10"]
+# row_pins = ["PIN_9", "PIN_11"]
+# col_pins = ["PIN_10"]
+
+[rmk]
+split_peripherals_num = 1

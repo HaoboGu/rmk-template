@@ -7,11 +7,10 @@ manufacturer = "RMK"
 chip = "nrf52840"
 
 [matrix]
-# Input and output pins are mandatory
-input_pins = ["P1_04", "P1_06", "P0_31", "P1_11"]
-output_pins = ["P0_02", "P1_15", "P1_13"]
-# WARNING: Currently row2col/col2row is set in RMK's feature gate, row2col config here is valid ONLY when you're using cloud compilation.
-# Checkout doc here: https://rmk.rs/docs/user_guide/faq.html#my-matrix-is-row2col-the-matrix-doesn-t-work
+# Row and col pins are mandatory
+row_pins = ["P1_04", "P1_06", "P0_31", "P1_11"]
+col_pins = ["P0_02", "P1_15", "P1_13"]
+# RMK uses col2row as the default matrix diode direction, if you want to use a row2col matrix, add `row2col = true`
 # row2col = true
 
 [layout]
