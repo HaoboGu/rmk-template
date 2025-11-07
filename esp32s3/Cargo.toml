@@ -10,26 +10,27 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { version = "0.7", default-features = false, features = [
-    "col2row",
+rmk = { git = "https://github.com/HaoboGu/rmk", default-features = false, features = [
     "esp32s3_ble",
     "log",
     "storage",
+    "vial",
 ] }
-embassy-executor = { version = "0.7.0" }
-esp-backtrace = { version = "0.16", features = [
+embassy-executor = { version = "0.9.0" }
+esp-backtrace = { version = "0.18", features = [
     "esp32s3",
-    "exception-handler",
     "panic-handler",
     "println",
 ] }
-esp-storage = { version = "0.6.0", features = ["esp32s3"] }
-esp-hal = { version = "1.0.0-beta.1", features = ["esp32s3", "unstable"] }
-esp-hal-embassy = { version = "0.8.1", features = ["esp32s3"] }
-esp-alloc = { version = "0.8.0" }
-esp-println = { version = "0.14.0", features = ["esp32s3","log-04"] }
-esp-wifi = { version = "0.14.1", features = ["esp32s3", "ble"] }
-bt-hci = { version = "0.3" }
+esp-hal = { version = "1.0", features = ["esp32s3", "unstable"] }
+esp-storage = { version = "0.8", features = ["esp32s3"] }
+esp-alloc = { version = "0.9.0" }
+esp-println = { version = "0.16.0", features = ["esp32s3", "log-04"] }
+esp-radio = { version = "0.17", features = ["esp32s3", "unstable", "ble"] }
+esp-rtos = { version = "0.2", features = ["esp32s3", "esp-radio", "embassy"] }
+esp-bootloader-esp-idf = { version = "0.4", features = ["esp32s3", "log-04"] }
+static_cell = "2"
+bt-hci = { version = "0.6" }
 rand_core = { version = "0.6", default-features = false }
 
 [build-dependencies]
@@ -59,10 +60,3 @@ incremental = false
 lto = 'thin'
 opt-level = 3
 overflow-checks = false
-
-[patch.crates-io]
-embassy-sync = { git = "https://github.com/embassy-rs/embassy.git", rev = "f35aa4005a63e8d478b2b95aaa2bfb316b72dece" }
-embassy-futures = { git = "https://github.com/embassy-rs/embassy.git", rev = "f35aa4005a63e8d478b2b95aaa2bfb316b72dece" }
-embassy-executor = { git = "https://github.com/embassy-rs/embassy.git", rev = "f35aa4005a63e8d478b2b95aaa2bfb316b72dece" }
-sequential-storage = { git = "https://github.com/tweedegolf/sequential-storage", rev = "4e9abcec36c259cb2c30840649ff8f9a6b6fcafc" } # Tmp workaround for https://github.com/tweedegolf/sequential-storage/issues/81
-trouble-host = { git = "https://github.com/embassy-rs/trouble", rev = "90c6359" }

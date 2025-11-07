@@ -10,18 +10,18 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { version = "0.7" }
+rmk = { git = "https://github.com/HaoboGu/rmk" }
 cortex-m = { version = "0.7.7", features = ['critical-section-single-core'] }
 cortex-m-rt = "0.7.5"
-embassy-time = { version = "0.4", features = ["tick-hz-32_768", "defmt"] }
-embassy-stm32 = { version = "0.2", features = [
+embassy-time = { version = "0.5", features = ["tick-hz-32_768", "defmt"] }
+embassy-stm32 = { version = "0.4", features = [
     "{{ chip_name }}",
     "defmt",
     "memory-x",
     "exti",
     "time-driver-any",
 ] }
-embassy-executor = { version = "0.7", features = [
+embassy-executor = { version = "0.9", features = [
     "defmt",
     "arch-cortex-m",
     "executor-thread",
@@ -30,11 +30,6 @@ static_cell = "2"
 defmt = "1.0"
 defmt-rtt = "1.0"
 panic-probe = { version = "1.0", features = ["print-defmt"] }
-
-[patch.crates-io]
-embassy-sync = { git = "https://github.com/embassy-rs/embassy.git", rev = "f35aa4005a63e8d478b2b95aaa2bfb316b72dece" }
-embassy-futures = { git = "https://github.com/embassy-rs/embassy.git", rev = "f35aa4005a63e8d478b2b95aaa2bfb316b72dece" }
-embassy-executor = { git = "https://github.com/embassy-rs/embassy.git", rev = "f35aa4005a63e8d478b2b95aaa2bfb316b72dece" }
 
 [build-dependencies]
 xz2 = "0.1.7"
