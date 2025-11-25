@@ -10,7 +10,7 @@ edition = "2021"
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rmk = { git = "https://github.com/HaoboGu/rmk", default-features = false, features = [
+rmk = { version = "0.8", default-features = false, features = [
     "esp32s3_ble",
     "log",
     "storage",
