@@ -1,0 +1,58 @@
+[keyboard]
+name = "{{ project_name }}"
+product_name = "{{ project_name }}"
+vendor_id = 0x4c4b
+product_id = 0x4643
+manufacturer = "RMK"
+chip = "esp32s3"
+usb_enable = true
+
+[layout]
+rows = 4
+cols = 3
+layers = 2
+keymap = [
+    [
+        ["A", "B", "C"],
+        ["Kc1", "Kc2", "Kc3"],
+        ["LCtrl", "MO(1)", "LShift"],
+        ["OSL(1)", "LT(2, Kc9)", "LM(1, LShift | LGui)"]
+    ],
+    [
+        ["_", "TT(1)", "TG(2)"],
+        ["_", "_", "_"],
+        ["_", "_", "_"],
+        ["_", "_", "_"]
+    ],
+]
+
+[split]
+connection = "ble"
+
+[split.central]
+rows = 2
+cols = 2
+row_offset = 0
+col_offset = 0
+
+[split.central.matrix]
+row_pins = ["GPIO6", "GPIO7"]
+col_pins = ["GPIO3", "GPIO4"]
+# RMK uses col2row as the default matrix diode direction, if you want to use a row2col matrix, add `row2col = true`
+# row2col = true
+
+[[split.peripheral]]
+rows = 2
+cols = 1
+row_offset = 2
+col_offset = 2
+
+[split.peripheral.matrix]
+row_pins = ["GPIO6", "GPIO7"]
+col_pins = ["GPIO3"]
+
+[ble]
+enabled = true
+
+[rmk]
+split_peripherals_num = 1
