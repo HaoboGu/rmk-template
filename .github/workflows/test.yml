@@ -46,6 +46,9 @@ jobs:
         template_name:
           - rp2040
           - nrf52840
+          - pico_w
+          - esp32c3
+          - esp32c6
     steps:
       - uses: cargo-bins/cargo-binstall@main
       - uses: actions/checkout@v3
@@ -62,7 +65,7 @@ jobs:
         working-directory: ${{ matrix.template_name }}_split_test
         run: cargo make uf2 --release
 
-  build_esp_templates:
+  build_esp32s3_template:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -82,4 +85,26 @@ jobs:
         run: rmkit init --project-name ${{ matrix.template_name }}_test --chip ${{ matrix.template_name }} --split false --local-path ${{ matrix.template_name }}
       - name: Build template
         working-directory: ${{ matrix.template_name }}_test
+        run: . /home/runner/export-esp.sh && cargo update && cargo +esp build --release 
+
+  build_esp32s3_split_template:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        template_name:
+          - esp32s3_split
+    steps:
+      - uses: esp-rs/xtensa-toolchain@v1.5
+        with:
+          ldproxy: false
+      - uses: cargo-bins/cargo-binstall@main
+      - uses: actions/checkout@v3
+      - name: Install ldproxy and espup
+        run: cargo binstall ldproxy espup rmkit -y
+      - name: Install esp toolchain
+        run: espup install
+      - name: Create project
+        run: rmkit init --project-name ${{ matrix.template_name }}_split_test --chip ${{ matrix.template_name }} --split true --local-path ${{ matrix.template_name }}
+      - name: Build template
+        working-directory: ${{ matrix.template_name }}_split_test
         run: . /home/runner/export-esp.sh && cargo update && cargo +esp build --release 
