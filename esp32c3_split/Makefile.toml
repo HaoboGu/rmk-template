@@ -12,7 +12,7 @@ install_crate = { crate_name = "cargo-espflash", binary = "cargo", test_arg = [
     "--help",
 ] }
 command = "cargo"
-args = ["espflash", "save-image", "--release", "--bin", "central", "--target", "riscv32imc-unknown-none-elf", "--chip", "esp32c3", "--merge", "central.bin"]
+args = ["espflash", "save-image", "--release", "--bin", "central", "--chip", "esp32c3", "--merge", "central.bin"]
 dependencies = ["build"]
 
 [tasks.save-image-peripheral]
@@ -21,7 +21,7 @@ install_crate = { crate_name = "cargo-espflash", binary = "cargo", test_arg = [
     "--help",
 ] }
 command = "cargo"
-args = ["espflash", "save-image", "--release", "--bin", "peripheral", "--target", "riscv32imc-unknown-none-elf", "--chip", "esp32c3", "--merge", "peripheral.bin"]
+args = ["espflash", "save-image", "--release", "--bin", "peripheral", "--chip", "esp32c3", "--merge", "peripheral.bin"]
 dependencies = ["build"]
 
 [tasks.uf2]
