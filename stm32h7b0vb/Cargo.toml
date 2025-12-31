@@ -13,6 +13,7 @@ license = "MIT OR Apache-2.0"
 rmk = { version = "0.8", features = ["controller"]}
 cortex-m = { version = "0.7.7", features = ['critical-section-single-core'] }
 cortex-m-rt = "0.7.5"
+embassy-embedded-hal = "0.5.0"
 embassy-time = { version = "0.5", features = ["tick-hz-32_768"] }
 embassy-stm32 = { version = "0.4", features = [
     "{{ chip_name }}",
