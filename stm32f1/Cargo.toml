@@ -29,6 +29,7 @@ static_cell = "2"
 defmt = "1.0"
 defmt-rtt = "1.0"
 panic-probe = { version = "1.0" }
+embassy-usb-driver = "=0.2.0"
 
 [build-dependencies]
 xz2 = "0.1.7"
