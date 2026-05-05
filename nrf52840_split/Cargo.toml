@@ -54,6 +54,7 @@ static_cell = "2"
 rand = { version = "0.8.4", default-features = false }
 rand_core = { version = "0.6" }
 rand_chacha = { version = "0.3", default-features = false }
+embassy-usb-driver = "=0.2.0"
 
 [build-dependencies]
 xz2 = "0.1.7"

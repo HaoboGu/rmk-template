@@ -34,6 +34,7 @@ esp-bootloader-esp-idf = { version = "0.4", features = ["esp32c6", "log-04"] }
 static_cell = "2"
 bt-hci = { version = "0.6" }
 rand_core = { version = "0.6", default-features = false }
+embassy-usb-driver = "=0.2.0"
 
 [build-dependencies]
 xz2 = "0.1.7"

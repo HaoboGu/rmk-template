@@ -36,6 +36,7 @@ bt-hci = { version = "0.6", default-features = false, features = ["defmt"] }
 rand = { version = "0.8.4", default-features = false }
 rand_core = { version = "0.6" }
 rand_chacha = { version = "0.3", default-features = false }
+embassy-usb-driver = "=0.2.0"
 
 [features]
 skip-cyw43-firmware = []
