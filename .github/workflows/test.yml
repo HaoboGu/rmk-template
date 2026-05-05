@@ -9,6 +9,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  RUST_MIN_STACK: "67108864"
 
 jobs:
   build_templates:
