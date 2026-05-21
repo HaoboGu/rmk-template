@@ -31,6 +31,10 @@ args = [
 dependencies = ["build"]
 
 [tasks.objcopy-peripheral]
+install_crate = { crate_name = "cargo-binutils", binary = "cargo", test_arg = [
+    "objcopy",
+    "--help",
+] }
 command = "cargo"
 args = [
     "objcopy",

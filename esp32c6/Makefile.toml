@@ -1,10 +1,6 @@
-[tasks.install-llvm-tools]
-install_crate = { rustup_component_name = "llvm-tools" }
-
 [tasks.build]
 command = "cargo"
 args = ["build", "--release"]
-dependencies = ["install-llvm-tools"]
 
 [tasks.uf2]
 install_crate = { crate_name = "cargo-espflash", binary = "cargo", test_arg = [
