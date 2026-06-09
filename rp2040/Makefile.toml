@@ -20,6 +20,11 @@ command = "cargo"
 args = ["objcopy", "--release", "--", "-O", "ihex", "{{ project_name }}.hex"]
 dependencies = ["build"]
 
+[tasks.bin]
+command = "cargo"
+args = ["objcopy", "--release", "--", "-O", "binary", "{{ project_name }}.bin"]
+dependencies = ["build"]
+
 [tasks.uf2]
 install_crate = { crate_name = "cargo-hex-to-uf2", binary = "cargo", test_arg = [
     "hex-to-uf2",
