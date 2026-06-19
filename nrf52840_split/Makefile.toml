@@ -45,6 +45,37 @@ args = [
 ]
 dependencies = ["build"]
 
+[tasks.bin-central]
+command = "cargo"
+args = [
+    "objcopy",
+    "--release",
+    "--bin",
+    "central",
+    "--",
+    "-O",
+    "binary",
+    "{{ project_name }}-central.bin",
+]
+dependencies = ["build"]
+
+[tasks.bin-peripheral]
+command = "cargo"
+args = [
+    "objcopy",
+    "--release",
+    "--bin",
+    "peripheral",
+    "--",
+    "-O",
+    "binary",
+    "{{ project_name }}-peripheral.bin",
+]
+dependencies = ["build"]
+
+[tasks.bin]
+dependencies = ["bin-central", "bin-peripheral"]
+
 [tasks.uf2-central]
 install_crate = { crate_name = "cargo-hex-to-uf2", binary = "cargo", test_arg = [
     "hex-to-uf2",
