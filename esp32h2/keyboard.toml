@@ -35,5 +35,19 @@ keymap = [
     ],
 ]
 
+[light]
+# All light pins are high-active by default, uncomment if you want it to be low-active
+# capslock.pin = "GPIO12"
+# capslock.low_active = true
+# scrolllock.pin = "GPIO13"
+# scrolllock.low_active = true
+# Just ignore if no light pin is used for it
+# numslock.pin = "GPIO14"
+# numslock.low_active = true
+
+[storage]
+# Storage feature is enabled by default
+# enabled = false
+
 [ble]
 enabled = true

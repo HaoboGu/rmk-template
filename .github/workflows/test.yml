@@ -51,6 +51,7 @@ jobs:
           - pico_w
           - esp32c3
           - esp32c6
+          - esp32h2
     steps:
       - uses: cargo-bins/cargo-binstall@main
       - uses: actions/checkout@v3

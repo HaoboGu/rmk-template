@@ -14,6 +14,8 @@ license = "MIT OR Apache-2.0"
 rmk = { git = "https://github.com/HaoboGu/rmk", rev = "9a740762d80b208c2180cfd2dbde7ed889339d3e", default-features = false, features = [
     "esp32h2_ble",
     "log",
+    "split",
+    "async_matrix",
     "storage",
     "vial",
 ] }
@@ -39,8 +41,16 @@ const-gen = "1.6"
 embuild = "0.33"
 cc = "1.2.9"
 
+# Split keyboard example
 [[bin]]
-name = "{{ project_name }}"
+name = "central"
+path = "src/central.rs"
+test = false
+bench = false
+
+[[bin]]
+name = "peripheral"
+path = "src/peripheral.rs"
 test = false
 bench = false
 
