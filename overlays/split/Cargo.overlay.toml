@@ -1,7 +1,13 @@
 # Split keyboards build two firmwares. rmkit replaces the family's single
-# `[[bin]]` with these two and drops `src/main.rs` (central.rs/peripheral.rs
-# from this overlay take its place). The `split` rmk feature is added by
-# `firmware_features()`, not here.
+# `[[bin]]` with these two, drops `src/main.rs` (central.rs/peripheral.rs take its
+# place), and replaces the family `Makefile.toml` with the dual-bin one in this
+# overlay. The `split` rmk feature is added by `firmware_features()`, not here.
+
+[dependencies]
+# A serial split's #[rmk_central] expands to a direct `static_cell::StaticCell`
+# path; the rp family base omits static_cell, so add it here (nrf/stm32/pico_w
+# already have it — this just re-sets the key).
+static_cell = "2"
 
 [[bin]]
 name = "central"

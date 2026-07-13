@@ -12,7 +12,7 @@ license = "MIT OR Apache-2.0"
 [dependencies]
 # rmkit rewrites this line: version/source from chip_matrix.toml [rmk], features from
 # firmware_features(). The default below is kept in sync with [rmk].
-rmk = { git = "https://github.com/HaoboGu/rmk", rev = "bf4d5b3fd363ff799351f87168009c7075e1ea44", default-features = false, features = [
+rmk = { git = "https://github.com/HaoboGu/rmk", rev = "836e6880e9617b00a80682d48168c57eebb8ff98", default-features = false, features = [
     "{{ esp_chip }}_ble",
     "log",
     "storage",

@@ -21,7 +21,7 @@
 #   Released: replace git/rev with `version = "0.9"`.
 [rmk]
 git = "https://github.com/HaoboGu/rmk"
-rev = "bf4d5b3fd363ff799351f87168009c7075e1ea44"
+rev = "836e6880e9617b00a80682d48168c57eebb8ff98"
 # version = "0.9"
 
 # ------------------------------------------------------------------ RP2040 (embassy-rp)
@@ -50,8 +50,7 @@ family = "nrf"
 target = "thumbv7em-none-eabihf"     # Cortex-M4F
 channel = "stable"
 memory_x = "nrf52840_adafruit"       # tuned for the Adafruit nRF52 bootloader
-sdc_chip = "nrf52840"                # nrf-sdc / nrf-mpsl / embassy-nrf chip feature
-uf2_tool = "hex-to-uf2"
+uf2_tool = "hex-to-uf2"              # nrf-sdc/embassy-nrf chip feature = {{ chip_name }}
 uf2_family = "nrf52840"
 firmware = ["uf2", "hex", "elf"]
 
@@ -82,7 +81,6 @@ family = "esp"
 arch = "xtensa"                      # needs the esp toolchain channel + build-std
 target = "xtensa-esp32s3-none-elf"
 channel = "esp"
-build_std = ["alloc", "core"]
 overlay_chip = "esp32s3"             # chips/esp32s3/ supplies the esp-channel toolchain + build-std
 esp_chip = "esp32s3"
 uf2_tool = "espflash"
@@ -119,8 +117,9 @@ target = "thumbv6m-none-eabi"
 [[stm32.core_rules]]
 cores = ["m3"]
 target = "thumbv7m-none-eabi"
-build_std = ["core"]
-panic_immediate_abort = true         # strip defmt to fit small flash (stm32f1-class)
+# NOTE: small-flash m0/m3 stm32 (e.g. stm32f1) render with full defmt and may
+# overflow flash. A defmt-strip + build-std escape hatch (chips/stm32f1/) is TODO;
+# until then they keep the family's defmt build.
 
 [[stm32.core_rules]]
 cores = ["m4", "m7"]

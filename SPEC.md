@@ -26,7 +26,11 @@ SPEC.md, README.md
 4. Apply layers **in this order, last wins** (plain file copy — a layer file
    replaces or adds the same path):
    a. `overlays/<overlay>/` if the row has `overlay = ...` (e.g. `pico_w`).
-   b. `overlays/split/` if `is_split`.
+   b. `overlays/split/` if `is_split` — ships `src/central.rs`+`src/peripheral.rs`
+      and a dual-bin `Makefile.toml`, and rmkit must additionally **delete the
+      family's `src/main.rs`** (else edition-2024 autobins builds a bogus third
+      binary against the split `keyboard.toml`). Split is ARM-only (rp/nrf/stm32);
+      esp split is not supported.
    c. `chips/<chip>/` if the row has `overlay_chip = ...` (e.g. `esp32h2`).
    A layer may also carry a `Cargo.overlay.toml` fragment (see below).
 5. Substitute placeholders (plain text replace) across `*.toml`, `*.json`,
@@ -34,12 +38,11 @@ SPEC.md, README.md
    | placeholder | source |
    |---|---|
    | `{{ project_name }}` | `[keyboard].name` (spaces → `_`) |
-   | `{{ chip_name }}` | canonical chip id — fills `[keyboard].chip` *and* the stm32/esp HAL feature (`esp_chip` / stm32 part id) |
+   | `{{ chip_name }}` | canonical chip id — fills `[keyboard].chip` *and* the HAL chip feature (embassy-nrf/nrf-sdc for nrf, embassy-stm32 for stm32) |
    | `{{ target }}` | matrix `target` (stm32: `core_rules` target) |
    | `{{ channel }}` | matrix `channel` (`stable`, or `esp` for Xtensa) |
-   | `{{ build_std }}` | matrix `build_std` block, else removed |
    | `{{ uf2_family }}` | matrix `uf2_family` (`prefix7` → `chip[..7]`) |
-   | `{{ esp_chip }}` | matrix `esp_chip` (esp family only) |
+   | `{{ esp_chip }}` | matrix `esp_chip` (esp family only; equals the chip id) |
 6. Write the `rmk` dependency line via the `cargo_toml` crate: the **version /
    source comes from `chip_matrix.toml` `[rmk]`** (a crates.io `version`, or
    `git` + `rev`) and the **features from step 1** (`default-features` +

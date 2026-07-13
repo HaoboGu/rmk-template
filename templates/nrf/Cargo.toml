@@ -12,17 +12,17 @@ license = "MIT OR Apache-2.0"
 [dependencies]
 # rmkit rewrites this line: version/source from chip_matrix.toml [rmk], features from
 # firmware_features(). The default below is kept in sync with [rmk].
-rmk = { git = "https://github.com/HaoboGu/rmk", rev = "bf4d5b3fd363ff799351f87168009c7075e1ea44", default-features = false, features = ["defmt", "storage", "vial", "watchdog", "async_matrix", "nrf52840_ble", "adafruit_bl"] }
+rmk = { git = "https://github.com/HaoboGu/rmk", rev = "836e6880e9617b00a80682d48168c57eebb8ff98", default-features = false, features = ["defmt", "storage", "vial", "watchdog", "async_matrix", "nrf52840_ble", "adafruit_bl"] }
 nrf-sdc = { git = "https://github.com/alexmoon/nrf-sdc", rev = "abe49d22ebfc85fae134eb082fbfddf752016a55", features = [
     "defmt",
     "peripheral",
     "central",
-    "{{ sdc_chip }}",
+    "{{ chip_name }}",
 ] }
 nrf-mpsl = { git = "https://github.com/alexmoon/nrf-sdc", rev = "abe49d22ebfc85fae134eb082fbfddf752016a55", features = [
     "defmt",
     "critical-section-impl",
-    "{{ sdc_chip }}",
+    "{{ chip_name }}",
 ] }
 bt-hci = { version = "0.9", features = ["defmt"] }
 
@@ -31,7 +31,7 @@ cortex-m-rt = "0.7.5"
 embassy-time = { version = "0.5", features = ["tick-hz-32_768", "defmt"] }
 embassy-nrf = { version = "0.11", features = [
     "defmt",
-    "{{ sdc_chip }}",
+    "{{ chip_name }}",
     "time-driver-rtc1",
     "gpiote",
     "unstable-pac",
