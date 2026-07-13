@@ -1,0 +1,118 @@
+# Data-driven build matrix for the RMK firmware templates.
+#
+# `rmkit create` reads this file to assemble a firmware project: it picks the
+# chip's row, copies `templates/<family>/`, applies any `overlay`, applies
+# `chips/<chip>/` if present, then substitutes the fields below into the
+# template placeholders. See SPEC.md for the full assembly contract.
+#
+# Adding a chip that fits an existing family is a data-only change: add a row
+# here. A chip with a genuine one-off quirk gets a `chips/<chip>/` directory
+# (see `chips/esp32h2/`) — do NOT add conditional logic to the templates.
+
+# ------------------------------------------------------------------ RP2040 (embassy-rp)
+[chips.rp2040]
+family = "rp"
+target = "thumbv6m-none-eabi"        # Cortex-M0+
+channel = "stable"
+memory_x = "rp2040"
+uf2_tool = "hex-to-uf2"
+uf2_family = "rp2040"
+firmware = ["uf2", "hex", "elf"]
+
+[chips.pico_w]
+family = "rp"
+overlay = "pico_w"                   # adds cyw43 Wi-Fi/BLE deps + [patch] + firmware download
+target = "thumbv6m-none-eabi"
+channel = "stable"
+memory_x = "rp2040"
+uf2_tool = "hex-to-uf2"
+uf2_family = "rp2040"
+firmware = ["uf2", "hex", "elf"]
+
+# ------------------------------------------------------------------ nRF52 (embassy-nrf + nrf-sdc)
+[chips.nrf52840]
+family = "nrf"
+target = "thumbv7em-none-eabihf"     # Cortex-M4F
+channel = "stable"
+memory_x = "nrf52840_adafruit"       # tuned for the Adafruit nRF52 bootloader
+sdc_chip = "nrf52840"                # nrf-sdc / nrf-mpsl / embassy-nrf chip feature
+uf2_tool = "hex-to-uf2"
+uf2_family = "nrf52840"
+firmware = ["uf2", "hex", "elf"]
+
+[chips.nrf52832]
+family = "nrf"
+target = "thumbv7em-none-eabihf"
+channel = "stable"
+memory_x = "nrf52832"
+sdc_chip = "nrf52832"
+uf2_tool = "hex-to-uf2"
+uf2_family = "nrf52840"              # cargo-hex-to-uf2 family id shared across nrf52
+firmware = ["uf2", "hex", "elf"]
+
+# ------------------------------------------------------------------ ESP32 (esp-hal)
+[chips.esp32c3]
+family = "esp"
+arch = "riscv"
+target = "riscv32imc-unknown-none-elf"
+channel = "stable"
+esp_chip = "esp32c3"                 # substituted into every esp-* dep feature list
+uf2_tool = "espflash"
+firmware = ["bin", "elf"]
+
+[chips.esp32c6]
+family = "esp"
+arch = "riscv"
+target = "riscv32imac-unknown-none-elf"
+channel = "stable"
+esp_chip = "esp32c6"
+uf2_tool = "espflash"
+firmware = ["bin", "elf"]
+
+[chips.esp32s3]
+family = "esp"
+arch = "xtensa"                      # needs the esp toolchain channel + build-std
+target = "xtensa-esp32s3-none-elf"
+channel = "esp"
+build_std = ["alloc", "core"]
+esp_chip = "esp32s3"
+uf2_tool = "espflash"
+firmware = ["bin", "elf"]
+
+[chips.esp32h2]
+family = "esp"
+arch = "riscv"
+target = "riscv32imac-unknown-none-elf"
+channel = "stable"
+overlay_chip = "esp32h2"             # chips/esp32h2/ pins a newer esp-hal graph + [patch]
+esp_chip = "esp32h2"
+uf2_tool = "espflash"
+firmware = ["bin", "elf"]
+
+# ------------------------------------------------------------------ STM32 (embassy-stm32)
+# STM32 is not enumerated per part: embassy-stm32 supports every chip via its own
+# `{{ chip_name }}` feature + the `memory-x` feature (no memory.x file needed).
+# Only the compilation target varies, keyed off the Cortex core; rmkit derives
+# the core from the part number (or the user picks a rule). `uf2_family` is the
+# first 7 chars of the chip id (e.g. `stm32f4`).
+[stm32]
+family = "stm32"
+channel = "stable"
+default_target = "thumbv7em-none-eabihf"
+uf2_tool = "hex-to-uf2"
+uf2_family = "prefix7"
+firmware = ["uf2", "hex", "elf"]
+
+[[stm32.core_rules]]
+cores = ["m0", "m0plus"]
+target = "thumbv6m-none-eabi"
+
+[[stm32.core_rules]]
+cores = ["m3"]
+target = "thumbv7m-none-eabi"
+build_std = ["core"]
+panic_immediate_abort = true         # strip defmt to fit small flash (stm32f1-class)
+
+[[stm32.core_rules]]
+cores = ["m4", "m7"]
+target = "thumbv7em-none-eabihf"
