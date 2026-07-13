@@ -9,6 +9,21 @@
 # here. A chip with a genuine one-off quirk gets a `chips/<chip>/` directory
 # (see `chips/esp32h2/`) — do NOT add conditional logic to the templates.
 
+# ------------------------------------------------------------------ rmk dependency
+# How every generated project depends on the `rmk` crate. rmkit writes THIS onto the
+# `rmk = {...}` line together with the features from `firmware_features()`, so the rmk
+# version lives in ONE place (not in each family Cargo.toml). Supports either a
+# crates.io release or a git pin, so the whole chain (this template repo + rmk) can be
+# git or released. The feature vocabulary `firmware_features()` speaks (host_lock,
+# rynk, …) MUST match this rmk — keep it the rmk whose rmk-config rmkit was built with.
+#
+#   Pre-release (rynk lives on feat/rynk_protocol): pin the git rev below.
+#   Released: replace git/rev with `version = "0.9"`.
+[rmk]
+git = "https://github.com/HaoboGu/rmk"
+rev = "bf4d5b3fd363ff799351f87168009c7075e1ea44"
+# version = "0.9"
+
 # ------------------------------------------------------------------ RP2040 (embassy-rp)
 [chips.rp2040]
 family = "rp"

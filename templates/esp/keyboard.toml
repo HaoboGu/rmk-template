@@ -4,7 +4,7 @@ product_name = "{{ project_name }}"
 vendor_id = 0x4c4b
 product_id = 0x4643
 manufacturer = "RMK"
-chip = "esp32c3"
+chip = "{{ chip_name }}"
 usb_enable = false
 
 [matrix]

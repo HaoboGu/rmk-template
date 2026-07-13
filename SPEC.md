@@ -34,21 +34,31 @@ SPEC.md, README.md
    | placeholder | source |
    |---|---|
    | `{{ project_name }}` | `[keyboard].name` (spaces → `_`) |
-   | `{{ chip_name }}` | stm32/esp HAL chip feature (`esp_chip` / the stm32 part id) |
+   | `{{ chip_name }}` | canonical chip id — fills `[keyboard].chip` *and* the stm32/esp HAL feature (`esp_chip` / stm32 part id) |
    | `{{ target }}` | matrix `target` (stm32: `core_rules` target) |
    | `{{ channel }}` | matrix `channel` (`stable`, or `esp` for Xtensa) |
    | `{{ build_std }}` | matrix `build_std` block, else removed |
    | `{{ uf2_family }}` | matrix `uf2_family` (`prefix7` → `chip[..7]`) |
    | `{{ esp_chip }}` | matrix `esp_chip` (esp family only) |
-6. Write the `rmk` dependency line from step 1 (rmkit rewrites the placeholder
-   `rmk` line via the `cargo_toml` crate — same mechanism it uses today):
-   `rmk = { version = "0.8", default-features = <bool>, features = [...] }`.
-7. Merge every applied layer's `Cargo.overlay.toml` (if any) into `Cargo.toml`
+6. Write the `rmk` dependency line via the `cargo_toml` crate: the **version /
+   source comes from `chip_matrix.toml` `[rmk]`** (a crates.io `version`, or
+   `git` + `rev`) and the **features from step 1** (`default-features` +
+   `firmware_features().rmk_features`). The rmk version thus lives in one place,
+   and the whole chain — this template ref *and* rmk — can be git or released.
+7. **Validate** the derived features against the *resolved* rmk's `[features]`
+   table (`cargo metadata` on the generated project). A feature the pinned rmk
+   doesn't define is a hard error with a clear message (e.g. `rmk has no feature
+   'host_lock' at this version; use a matching rmk`) — not a cryptic Cargo error.
+   This catches vocabulary skew: the feature names `firmware_features()` speaks
+   are those of the rmk its rmk-config was released with, so `[rmk]` must point at
+   that same rmk.
+8. Merge every applied layer's `Cargo.overlay.toml` (if any) into `Cargo.toml`
    via `cargo_toml`: `[dependencies]` and `[patch.*]` tables are added, and
    `[[bin]]` is replaced when the fragment defines it.
-8. Copy the memory layout: `memory/<memory_x>.x` → `memory.x` (families whose
+9. Copy the memory layout: `memory/<memory_x>.x` → `memory.x` (families whose
    matrix row has no `memory_x`, i.e. stm32/esp, ship none).
-9. Copy the user's `keyboard.toml` + `vial.json` into the project.
+10. Copy the user's `keyboard.toml` + `vial.json` into the project (`create`);
+    `init` keeps the family default with `{{ chip_name }}` filled to the chip.
 
 ## Placeholder rule
 
