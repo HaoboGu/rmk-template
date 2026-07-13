@@ -1,0 +1,26 @@
+# Raspberry Pi Pico W overlay (layers on the `rp` family). rmkit merges these
+# tables into Cargo.toml: adds the cyw43 Wi-Fi/BLE stack, pins the cyw43 +
+# embassy-time graph to an embassy revision, adds the `skip-cyw43-firmware`
+# escape hatch, and adds the `reqwest` build-dep the pico_w build.rs uses to
+# fetch the cyw43 firmware blobs. The `pico_w_ble` rmk feature comes from
+# `firmware_features()` (board = pico_w).
+
+[dependencies]
+cyw43 = { version = "0.5", features = ["defmt", "firmware-logs", "bluetooth"] }
+cyw43-pio = { version = "0.8", features = ["defmt"] }
+static_cell = "2"
+bt-hci = { version = "0.6", default-features = false, features = ["defmt"] }
+rand = { version = "0.8.4", default-features = false }
+rand_core = { version = "0.6" }
+rand_chacha = { version = "0.3", default-features = false }
+
+[features]
+skip-cyw43-firmware = []
+
+[build-dependencies]
+reqwest = { version = "0.12.9", features = ["blocking"] }
+
+[patch.crates-io]
+cyw43 = { git = "https://github.com/embassy-rs/embassy", rev = "faacad6" }
+embassy-time-driver = { git = "https://github.com/embassy-rs/embassy", rev = "faacad6" }
+embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "faacad6" }

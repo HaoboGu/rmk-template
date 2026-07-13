@@ -1,0 +1,12 @@
+# Split keyboards build two firmwares. rmkit replaces the family's single
+# `[[bin]]` with these two and drops `src/main.rs` (central.rs/peripheral.rs
+# from this overlay take its place). The `split` rmk feature is added by
+# `firmware_features()`, not here.
+
+[[bin]]
+name = "central"
+path = "src/central.rs"
+
+[[bin]]
+name = "peripheral"
+path = "src/peripheral.rs"

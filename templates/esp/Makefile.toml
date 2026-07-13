@@ -1,0 +1,12 @@
+[tasks.build]
+command = "cargo"
+args = ["build", "--release"]
+
+[tasks.uf2]
+install_crate = { crate_name = "cargo-espflash", binary = "cargo", test_arg = [
+    "espflash",
+    "--help",
+] }
+command = "cargo"
+args = ["espflash", "save-image", "--release", "--chip", "{{ esp_chip }}", "--merge", "{{ project_name }}.bin"]
+dependencies = ["build"]

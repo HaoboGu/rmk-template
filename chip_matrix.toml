@@ -40,15 +40,8 @@ uf2_tool = "hex-to-uf2"
 uf2_family = "nrf52840"
 firmware = ["uf2", "hex", "elf"]
 
-[chips.nrf52832]
-family = "nrf"
-target = "thumbv7em-none-eabihf"
-channel = "stable"
-memory_x = "nrf52832"
-sdc_chip = "nrf52832"
-uf2_tool = "hex-to-uf2"
-uf2_family = "nrf52840"              # cargo-hex-to-uf2 family id shared across nrf52
-firmware = ["uf2", "hex", "elf"]
+# nrf52832/833/810/811 diverge (no nfc-pins-as-gpio, extra deps); they stay on the
+# legacy per-chip dirs until migrated behind a chips/<chip>/ escape hatch.
 
 # ------------------------------------------------------------------ ESP32 (esp-hal)
 [chips.esp32c3]
@@ -75,6 +68,7 @@ arch = "xtensa"                      # needs the esp toolchain channel + build-s
 target = "xtensa-esp32s3-none-elf"
 channel = "esp"
 build_std = ["alloc", "core"]
+overlay_chip = "esp32s3"             # chips/esp32s3/ supplies the esp-channel toolchain + build-std
 esp_chip = "esp32s3"
 uf2_tool = "espflash"
 firmware = ["bin", "elf"]

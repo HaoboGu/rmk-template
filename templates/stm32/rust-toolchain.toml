@@ -1,0 +1,6 @@
+[toolchain]
+channel = "{{ channel }}"
+components = ["rust-src", "rustfmt", "llvm-tools"]
+targets = [
+    "{{ target }}",
+]

@@ -1,0 +1,4 @@
+# esp32s3 is Xtensa: the `esp` channel (installed by espup) bundles the toolchain
+# and target, so — unlike the RISC-V esp chips — no `targets`/`components` here.
+[toolchain]
+channel = "esp"
